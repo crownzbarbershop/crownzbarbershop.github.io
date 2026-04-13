@@ -39,35 +39,33 @@ gsap.ticker.lagSmoothing(0);
 
 // 3. CINEMATIC PRELOADER & HERO ANIMATION
 // ==========================================================================
+// ==========================================================================
+// 2. CLINICAL PRELOADER & HERO ANIMATION (FIXED BLUR BUG)
+// ==========================================================================
 const initAnimations = () => {
     const preloader = document.querySelector('.preloader');
     
     if (preloader) {
         const tl = gsap.timeline();
         
-        // Staggered text reveal, load bar, then slide out
         tl.to('.preloader-brand .char', { y: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: 'power4.out' })
-          .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
-          .to('.preloader', { yPercent: -100, duration: 1.2, ease: 'power4.inOut' })
-          
-          // Hero Image Scale & Blur release
-          .fromTo('.hero-bg-img', { scale: 1.15, filter: 'blur(10px)' }, { scale: 1.05, filter: 'blur(0px)', duration: 2, ease: 'power3.out' }, "-=1")
-          
-          // Glass Panel slide up
-          .fromTo('.hero-text-box', { y: 50, opacity: 0, backdropFilter: 'blur(0px)' }, { y: 0, opacity: 1, backdropFilter: 'blur(25px)', duration: 1.5, ease: 'power4.out' }, "-=1.2")
-          
-          .call(() => {
-              document.body.classList.remove('loading');
-              setTimeout(() => { preloader.style.display = 'none'; }, 1000);
-          });
+        .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
+        .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
+        
+        // Hero Image ka scale animation delete kar diya hai taaki browser blur na kare
+        
+        .to('.hero-section .gs-reveal', { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power4.out' }, "-=0.8")
+        .call(() => {
+            document.body.classList.remove('loading');
+            setTimeout(() => { preloader.style.display = 'none'; }, 1000);
+        });
     } else {
         document.body.classList.remove('loading');
     }
 };
 
 window.addEventListener('load', initAnimations);
-// Fallback if load takes too long
-setTimeout(() => { if(document.body.classList.contains('loading')) initAnimations(); }, 4000);
+setTimeout(() => { if(document.body.classList.contains('loading')) initAnimations(); }, 3500);
 
 // 4. HIGH-PERFORMANCE MAGNETIC CURSOR
 // ==========================================================================
