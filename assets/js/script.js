@@ -1,375 +1,306 @@
 // ==========================================================================
-// 1. STUDIO-GRADE SMOOTH SCROLL (LENIS)
+// CROWNZ - LEVEL 500 MASTER SCRIPT
 // ==========================================================================
-// Initialize smooth scrolling physics
+
+// 1. AMBIENT PARTICLE ENGINE (HERO SECTION)
+// ==========================================================================
+if (document.getElementById('particles-js')) {
+    particlesJS('particles-js', {
+        "particles": {
+            "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#00c2ff" }, // Electric Cyan
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+            "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.05, "width": 1 },
+            "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.4 } } }
+        },
+        "retina_detect": true
+    });
+}
+
+// 2. STUDIO-GRADE SMOOTH SCROLL (LENIS)
+// ==========================================================================
 const lenis = new Lenis({ 
     duration: 1.2, 
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
     smoothWheel: true,
-    smoothTouch: false // Keeps native touch scrolling intact on mobile
+    smoothTouch: false 
 });
 
-// Sync Lenis with GSAP ScrollTrigger for flawless animations
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => { lenis.raf(time * 1000) });
 gsap.ticker.lagSmoothing(0);
 
-// ==========================================================================
-// 2. CLINICAL PRELOADER & HERO ANIMATION
+// 3. CINEMATIC PRELOADER & HERO ANIMATION
 // ==========================================================================
 const initAnimations = () => {
-    const preloader = document.getElementById('preloader');
+    const preloader = document.querySelector('.preloader');
     
-    if (preloader && !preloader.classList.contains('hidden')) {
+    if (preloader) {
         const tl = gsap.timeline();
         
-        tl.to('.p-char', { y: 0, stagger: 0.05, duration: 0.8, ease: "power4.out" })
-          .to(preloader, { y: '-100%', duration: 0.8, ease: "power4.inOut", delay: 0.4 })
-          .to('.hero-img', { scale: 1, duration: 1.5, ease: "power3.out" }, "-=0.4")
-          .to('.hero-badge span', { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, "-=1.2")
-          .to('.ht-line span', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power4.out" }, "-=1")
-          .to('.hero-description span', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }, "-=0.8")
-          .to('.hero-meta > *', { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }, "-=0.8")
-          .to('.hero-info-bar .info-item', { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }, "-=0.6")
+        // Staggered text reveal, load bar, then slide out
+        tl.to('.preloader-brand .char', { y: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: 'power4.out' })
+          .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
+          .to('.preloader', { yPercent: -100, duration: 1.2, ease: 'power4.inOut' })
+          
+          // Hero Image Scale & Blur release
+          .fromTo('.hero-bg-img', { scale: 1.15, filter: 'blur(10px)' }, { scale: 1.05, filter: 'blur(0px)', duration: 2, ease: 'power3.out' }, "-=1")
+          
+          // Glass Panel slide up
+          .fromTo('.hero-text-box', { y: 50, opacity: 0, backdropFilter: 'blur(0px)' }, { y: 0, opacity: 1, backdropFilter: 'blur(25px)', duration: 1.5, ease: 'power4.out' }, "-=1.2")
+          
           .call(() => {
-              document.body.classList.remove('locked');
-              preloader.classList.add('hidden');
+              document.body.classList.remove('loading');
               setTimeout(() => { preloader.style.display = 'none'; }, 1000);
           });
     } else {
-        document.body.classList.remove('locked');
+        document.body.classList.remove('loading');
     }
 };
 
 window.addEventListener('load', initAnimations);
-setTimeout(initAnimations, 3500);
+// Fallback if load takes too long
+setTimeout(() => { if(document.body.classList.contains('loading')) initAnimations(); }, 4000);
 
-// ==========================================================================
-// 3. DYNAMIC "OPEN NOW" STATUS LOGIC (TIMEZONE AWARE)
-// ==========================================================================
-const updateShopStatus = () => {
-    const statusIndicator = document.querySelector('.status-indicator');
-    const statusText = document.querySelector('.status-text');
-    
-    if (!statusIndicator || !statusText) return;
-
-    // Fetch current time specifically locked to Milton, ON
-    const torontoTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Toronto" }));
-    const day = torontoTime.getDay(); 
-    const hours = torontoTime.getHours();
-
-    const openTime = (day === 0) ? 10 : 9; 
-    const closeTime = 19; 
-
-    let isOpen = false;
-    if (hours >= openTime && hours < closeTime) { isOpen = true; }
-
-    if (isOpen) {
-        statusIndicator.className = 'status-indicator open';
-        statusText.innerText = 'Open Now (Closes at 7 PM)';
-    } else {
-        statusIndicator.className = 'status-indicator closed';
-        const nextDay = (day + 1) % 7;
-        const nextOpenTime = (nextDay === 0) ? "10 AM" : "9 AM";
-        const tomorrowStr = (hours >= closeTime) ? "tomorrow" : "today";
-        statusText.innerText = `Closed (Opens at ${nextOpenTime} ${tomorrowStr})`;
-    }
-};
-
-updateShopStatus();
-setInterval(updateShopStatus, 60000);
-
-// ==========================================================================
-// 4. BEFORE & AFTER TRANSFORMATION ENGINE (CLIP-PATH MASK)
-// ==========================================================================
-const baSlider = document.getElementById('baSlider');
-const baBefore = document.querySelector('.ba-before');
-const baHandle = document.getElementById('baHandle');
-
-if (baSlider && baBefore && baHandle) {
-    let isDragging = false;
-
-    const updateSlider = (clientX) => {
-        const rect = baSlider.getBoundingClientRect();
-        let percentage = ((clientX - rect.left) / rect.width) * 100;
-        percentage = Math.max(0, Math.min(100, percentage));
-        
-        // Uses the clip-path approach so the image never stretches or squishes
-        gsap.set(baBefore, { clipPath: `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)` });
-        gsap.set(baHandle, { left: `${percentage}%` });
-    };
-
-    // Desktop
-    baSlider.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        baSlider.classList.add('is-dragging');
-        updateSlider(e.clientX);
-    });
-    window.addEventListener('mouseup', () => {
-        isDragging = false;
-        baSlider.classList.remove('is-dragging');
-    });
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        updateSlider(e.clientX);
-    });
-
-    // Mobile (Passive true prevents scrolling from locking up)
-    baSlider.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        baSlider.classList.add('is-dragging');
-        updateSlider(e.touches[0].clientX);
-    }, {passive: true}); 
-    
-    window.addEventListener('touchend', () => {
-        isDragging = false;
-        baSlider.classList.remove('is-dragging');
-    });
-    
-    window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        updateSlider(e.touches[0].clientX);
-    }, {passive: true});
-}
-
-// ==========================================================================
-// 5. HIGH-PERFORMANCE INTELLIGENT CURSOR
+// 4. HIGH-PERFORMANCE MAGNETIC CURSOR
 // ==========================================================================
 if (window.matchMedia("(pointer: fine)").matches) {
-    document.body.classList.add('has-custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    const cursorText = document.querySelector('.cursor-text');
     
-    const cursorWrap = document.querySelector('.cursor-wrapper');
-    const cursorText = document.getElementById('cursorText');
-    
-    if (cursorWrap) {
-        const xTo = gsap.quickTo(cursorWrap, "x", { duration: 0.3, ease: "power3.out" });
-        const yTo = gsap.quickTo(cursorWrap, "y", { duration: 0.3, ease: "power3.out" });
+    if (cursorDot && cursorRing) {
+        // quickTo is highly optimized for mouse tracking
+        const dotX = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3.out" });
+        const dotY = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3.out" });
+        const ringX = gsap.quickTo(cursorRing, "x", { duration: 0.4, ease: "power3.out" });
+        const ringY = gsap.quickTo(cursorRing, "y", { duration: 0.4, ease: "power3.out" });
+        let textX, textY;
+        
+        if(cursorText) {
+            textX = gsap.quickTo(cursorText, "x", { duration: 0.4 });
+            textY = gsap.quickTo(cursorText, "y", { duration: 0.4 });
+        }
         
         window.addEventListener('mousemove', (e) => { 
-            xTo(e.clientX);
-            yTo(e.clientY);
+            dotX(e.clientX); dotY(e.clientY);
+            ringX(e.clientX); ringY(e.clientY);
+            if(cursorText) { textX(e.clientX); textY(e.clientY); }
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .hover-btn, .accordion-header, .p-item, .floating-badge, .magnetic-wrap, .ba-handle-button');
-        interactiveElements.forEach(el => {
+        // Hover Targets (Buttons, Links)
+        document.querySelectorAll('a, button, .hover-target, .accordion-header, .port-card, .floating-book-btn').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        document.querySelectorAll('.drag-zone, .ba-slider').forEach(el => {
+        // Drag/Swipe Targets (Sliders, Carousels)
+        document.querySelectorAll('.drag-target').forEach(el => {
             el.addEventListener('mouseenter', () => { 
                 document.body.classList.add('cursor-drag'); 
-                if (cursorText) cursorText.innerText = "DRAG"; 
+                if (cursorText) cursorText.innerText = el.classList.contains('horizontal-scroll-wrapper') ? "SWIPE" : "DRAG"; 
             });
             el.addEventListener('mouseleave', () => { 
                 document.body.classList.remove('cursor-drag'); 
                 if (cursorText) cursorText.innerText = ""; 
             });
         });
-    }
-}
 
-// ==========================================================================
-// 6. PREMIUM LIVE ELEMENT (GLITCH-FREE ROTATING BADGE)
-// ==========================================================================
-const floatingBadge = document.querySelector('.floating-badge');
-const badgeText = document.querySelector('.badge-text');
-
-if (floatingBadge) {
-    // Initial Setup
-    gsap.set(floatingBadge, { scale: 0, opacity: 0 });
-    
-    // Smooth, non-bouncy pop-up to prevent SVG text deformation
-    ScrollTrigger.create({
-        trigger: ".about-section",
-        start: "top 80%", 
-        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, pointerEvents: 'all', duration: 0.6, ease: "power3.out" }),
-        onLeaveBack: () => gsap.to(floatingBadge, { scale: 0, opacity: 0, pointerEvents: 'none', duration: 0.4, ease: "power3.in" })
-    });
-
-    if (badgeText) {
-        let currentRotation = 0;
-        let scrollVelocity = 0;
-
-        lenis.on('scroll', (e) => { scrollVelocity = e.velocity; });
-
-        gsap.ticker.add(() => {
-            // Base speed + kinetic speed from user scrolling
-            currentRotation += 0.5 + (Math.abs(scrollVelocity) * 0.15); 
-            gsap.set(badgeText, { rotation: currentRotation, transformOrigin: "center center" });
-            scrollVelocity *= 0.85; 
-        });
-    }
-}
-
-// ==========================================================================
-// 7. PARALLAX MAGNETIC BUTTONS
-// ==========================================================================
-if (window.matchMedia("(pointer: fine)").matches) {
-    document.querySelectorAll('.magnetic-wrap').forEach(wrap => {
-        const btn = wrap.querySelector('.btn-parallax');
-        const btnText = wrap.querySelector('.btn-text');
-        
-        if (btn) {
-            const xToBtn = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3.out" });
-            const yToBtn = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3.out" });
-            
-            let xToText, yToText;
-            if (btnText) {
-                xToText = gsap.quickTo(btnText, "x", { duration: 0.3, ease: "power3.out" });
-                yToText = gsap.quickTo(btnText, "y", { duration: 0.3, ease: "power3.out" });
-            }
-            
-            wrap.addEventListener('mousemove', (e) => {
-                const rect = wrap.getBoundingClientRect();
-                const x = e.clientX - (rect.left + rect.width / 2);
-                const y = e.clientY - (rect.top + rect.height / 2);
-                
-                xToBtn(x * 0.3); yToBtn(y * 0.3);
-                if (btnText) { xToText(x * 0.15); yToText(y * 0.15); }
+        // Magnetic Physics for Primary Buttons
+        document.querySelectorAll('.primary-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
             });
-            
-            wrap.addEventListener('mouseleave', () => {
-                xToBtn(0); yToBtn(0);
-                if (btnText) { xToText(0); yToText(0); }
+            btn.addEventListener('mouseleave', () => {
                 gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-                if (btnText) gsap.to(btnText, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
             });
-        }
-    });
+        });
+    }
 }
 
+// 5. BEFORE & AFTER TRANSFORMATION ENGINE
 // ==========================================================================
-// 8. 3D PORTFOLIO TILT EFFECT
-// ==========================================================================
-if (window.matchMedia("(pointer: fine)").matches) {
-    const portfolioItems = document.querySelectorAll('.p-item');
-    portfolioItems.forEach(item => {
-        const img = item.querySelector('img');
+const baSlider = document.getElementById('baSlider');
+const baOver = document.querySelector('.ba-over');
+const baHandle = document.querySelector('.ba-handle');
+
+if (baSlider && baOver && baHandle) {
+    let isDragging = false;
+    
+    const updateSlider = (clientX) => {
+        const rect = baSlider.getBoundingClientRect();
+        let percentage = ((clientX - rect.left) / rect.width) * 100;
+        percentage = Math.max(0, Math.min(100, percentage));
         
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -5;
-            const rotateY = ((x - centerX) / centerX) * 5;
-            
-            gsap.to(img, { rotationX: rotateX, rotationY: rotateY, transformPerspective: 1000, ease: "power2.out", duration: 0.4 });
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            gsap.to(img, { rotationX: 0, rotationY: 0, duration: 0.7, ease: "power2.out" });
-        });
-    });
+        // Direct DOM manipulation for zero-latency dragging
+        gsap.set(baOver, { clipPath: `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)` });
+        gsap.set(baHandle, { left: `${percentage}%` });
+    };
+
+    baSlider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    
+    // Mobile Touch Support
+    baSlider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, {passive: true}); 
+    window.addEventListener('touchend', () => { isDragging = false; });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, {passive: true});
 }
 
-// ==========================================================================
-// 9. INTERACTIVE ACCORDION (CROSSFADE ENGINE)
+// 6. INTERACTIVE ACCORDION (CROSSFADE ENGINE)
 // ==========================================================================
 const accordions = document.querySelectorAll('.accordion-item');
-const accordionImage = document.getElementById('accordionImage');
+const previewImg = document.getElementById('servicePreviewImg');
 
 accordions.forEach(acc => {
     const header = acc.querySelector('.accordion-header');
     if (header) {
         header.addEventListener('click', () => {
-            const newImg = header.getAttribute('data-img');
+            const isActive = acc.classList.contains('active');
             
-            if (newImg && accordionImage && accordionImage.getAttribute('src') !== newImg) {
-                gsap.to(accordionImage, { 
-                    opacity: 0, 
-                    duration: 0.3, 
-                    onComplete: () => {
-                        accordionImage.src = newImg;
-                        accordionImage.onload = () => gsap.to(accordionImage, { opacity: 1, duration: 0.4 });
+            // Close all
+            accordions.forEach(item => item.classList.remove('active'));
+            
+            if (!isActive) {
+                acc.classList.add('active'); // Open clicked
+                
+                // Crossfade Image Logic
+                if (previewImg) {
+                    const newSrc = acc.getAttribute('data-image');
+                    if (newSrc && previewImg.getAttribute('src') !== newSrc) {
+                        gsap.to(previewImg, { 
+                            opacity: 0, filter: 'grayscale(100%) blur(5px)', scale: 1.1, duration: 0.3, 
+                            onComplete: () => {
+                                previewImg.src = newSrc;
+                                previewImg.onload = () => gsap.to(previewImg, { opacity: 1, filter: 'grayscale(100%) blur(0px)', scale: 1, duration: 0.5 });
+                            }
+                        });
                     }
-                });
+                }
             }
-            accordions.forEach(item => { if (item !== acc) item.classList.remove('active'); });
-            acc.classList.toggle('active');
         });
     }
 });
 
+// 7. SCROLLTRIGGER: HORIZONTAL SCROLLING & REVEALS
 // ==========================================================================
-// 10. GSAP SCROLL REVEALS & PARALLAX
-// ==========================================================================
-ScrollTrigger.create({
-    start: 'top -50',
-    onUpdate: (self) => {
-        const navbar = document.getElementById('navbar');
-        if (navbar) {
-            if (self.direction === 1) { navbar.classList.add('scrolled'); } 
-            else { navbar.classList.remove('scrolled'); }
-        }
-    }
-});
+gsap.registerPlugin(ScrollTrigger);
 
-const revealElements = gsap.utils.toArray('.gs-reveal');
-revealElements.forEach(elem => {
-    gsap.fromTo(elem, 
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-    );
-});
-
-// General Image Inner-Parallax Effect
-gsap.utils.toArray('[data-speed]').forEach(elem => {
-    const speed = elem.getAttribute('data-speed') || 0.2;
-    gsap.to(elem, {
-        y: () => (window.innerHeight * parseFloat(speed)) * 0.4,
-        ease: "none",
-        scrollTrigger: { trigger: elem.parentElement, start: "top bottom", end: "bottom top", scrub: true }
-    });
-});
-
-const marqueeContainer = document.querySelector('.marquee-container');
-if (marqueeContainer) {
-    gsap.to(marqueeContainer, { xPercent: -50, ease: "none", duration: 35, repeat: -1 });
+// Navbar Blur on Scroll
+const header = document.querySelector('.site-header');
+if(header){ 
+    ScrollTrigger.create({ 
+        start: 'top -50', 
+        onUpdate: (self) => { 
+            if (self.direction === 1 || window.scrollY > 50) { header.classList.add('scrolled'); } 
+            else { header.classList.remove('scrolled'); } 
+        } 
+    }); 
 }
 
-// ==========================================================================
-// 11. UNIVERSAL SCROLL-TO-COLOR ENGINE
-// ==========================================================================
-// This observer detects when photos enter the screen and adds the colorize class
-const colorizeElements = document.querySelectorAll('.colorize-on-scroll');
+// Reveal Animations (Up, Left, Right, Scale)
+gsap.utils.toArray('.gs-reveal-up').forEach(elem => { gsap.to(elem, { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
+gsap.utils.toArray('.gs-reveal-left').forEach(elem => { gsap.to(elem, { x: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
+gsap.utils.toArray('.gs-reveal-right').forEach(elem => { gsap.to(elem, { x: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
+gsap.utils.toArray('.gs-reveal-scale').forEach(elem => { gsap.to(elem, { scale: 1, opacity: 1, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
 
-const colorObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-active'); // Blooms to color
-        } else {
-            entry.target.classList.remove('is-active'); // Fades to B&W
-        }
+// Deep Parallax (Floating Shapes)
+gsap.utils.toArray('[data-speed]').forEach(elem => {
+    const speed = parseFloat(elem.getAttribute('data-speed'));
+    gsap.to(elem, { 
+        y: () => (ScrollTrigger.maxScroll(window) - elem.offsetTop) * (1 - speed) * 0.1, 
+        ease: "none", 
+        scrollTrigger: { trigger: elem.parentElement, start: "top bottom", end: "bottom top", scrub: true } 
     });
-}, {
-    threshold: 0.3 // Triggers when 30% of the image is visible
 });
 
-colorizeElements.forEach(el => colorObserver.observe(el));
-
-
-// ==========================================================================
-// 12. MOBILE NAVIGATION & OBSERVERS
-// ==========================================================================
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-const mobileCloseLinks = document.querySelectorAll('.mobile-close');
-
-if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuBtn.innerHTML = navLinks.classList.contains('active') ? `<i class="fa-solid fa-xmark"></i>` : `<i class="fa-solid fa-bars"></i>`;
-    });
-    
-    // Automatically close the mobile menu when a link is clicked
-    mobileCloseLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuBtn.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+// Horizontal Scrolljacking (Lookbook & Reviews)
+document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
+    const track = wrapper.querySelector('.portfolio-track');
+    if (track && window.innerWidth > 900) {
+        let scrollAmount = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
+        gsap.to(track, { 
+            x: -scrollAmount, ease: "none", 
+            scrollTrigger: { trigger: wrapper, start: "top center", end: () => `+=${scrollAmount}`, scrub: 1 } 
         });
+    }
+});
+
+// Floating Book Button Reveal
+const floatingBadge = document.querySelector('.floating-book-btn');
+if (floatingBadge) {
+    gsap.set(floatingBadge, { scale: 0, opacity: 0 });
+    ScrollTrigger.create({ 
+        trigger: "#ethos", start: "top 80%", 
+        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, pointerEvents: 'all', duration: 0.8, ease: "elastic.out(1, 0.5)" }), 
+        onLeaveBack: () => gsap.to(floatingBadge, { scale: 0, opacity: 0, pointerEvents: 'none', duration: 0.4, ease: "power3.in" }) 
     });
+}
+
+// 8. DYNAMIC STATUS & MOBILE MENU
+// ==========================================================================
+// Dynamic Open/Closed Status
+const updateShopStatus = () => {
+    const statusDot = document.querySelector('.status-dot');
+    const statusText = document.querySelector('.status-txt');
+    if (!statusDot || !statusText) return;
+
+    // Convert local time to Toronto/Milton time
+    const torontoTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Toronto" }));
+    const day = torontoTime.getDay(); 
+    const hours = torontoTime.getHours();
+
+    const openTime = (day === 0) ? 10 : 9; // 10 AM Sundays, 9 AM otherwise
+    const closeTime = 19; // 7 PM
+
+    const isOpen = (hours >= openTime && hours < closeTime);
+
+    if (isOpen) {
+        statusDot.classList.add('open');
+        statusDot.classList.remove('closed');
+        statusText.innerText = 'Open Now';
+    } else {
+        statusDot.classList.add('closed');
+        statusDot.classList.remove('open');
+        statusText.innerText = 'Currently Closed';
+    }
+};
+
+updateShopStatus();
+setInterval(updateShopStatus, 60000); // Check every minute
+
+// Mobile Menu Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu-overlay');
+
+if (menuToggle && mobileMenu) {
+    let menuOpen = false;
+    const toggleMenu = () => {
+        menuOpen = !menuOpen; 
+        mobileMenu.classList.toggle('active');
+        const lines = menuToggle.querySelectorAll('.line');
+        
+        if (menuOpen) { 
+            gsap.to(lines[0], { y: 4, rotation: 45, duration: 0.3 }); 
+            gsap.to(lines[1], { y: -4, rotation: -45, duration: 0.3 }); 
+            document.body.style.overflow = 'hidden'; lenis.stop(); 
+        } else { 
+            gsap.to(lines[0], { y: 0, rotation: 0, duration: 0.3 }); 
+            gsap.to(lines[1], { y: 0, rotation: 0, duration: 0.3 }); 
+            document.body.style.overflow = ''; lenis.start(); 
+        }
+    };
+    
+    menuToggle.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
 }
