@@ -153,7 +153,7 @@ nav.scrolled { padding: 20px 5%; }
    HERO SECTION (MOBILE OPTIMIZED)
    ========================================================================== */
 .hero { 
-    min-height: 100svh; /* Allows content to expand if needed on small phones */
+    min-height: 100svh; 
     position: relative; display: flex; align-items: center; padding: 120px 5% 80px 5%; overflow: hidden; width: 100%; 
 }
 .hero-bg { position: absolute; top: -10%; left: 0; height: 120%; width: 100%; z-index: -2; will-change: transform; }
@@ -339,24 +339,32 @@ nav.scrolled { padding: 20px 5%; }
 @media (max-width: 768px) {
     .cursor-wrapper { display: none !important; }
     
-    /* Hero Adjustments - min-height ensures text never clips */
-    .hero { min-height: 100svh; height: auto; padding-top: 130px; padding-bottom: 150px; }
+    /* Hero Adjustments - Zoom out effect by adjusting min-height and object-position */
+    .hero { min-height: 80svh; height: auto; padding-top: 130px; padding-bottom: 100px; }
+    .hero-bg img { object-position: center top; }
     .hero-info-bar { flex-direction: column; gap: 15px; align-items: flex-start; }
     
-    /* Un-Hide Mobile Floating Live Badge */
+    /* Un-Hide Mobile Floating Live Badge (Glitch Fixed) */
     .floating-badge {
-        display: flex;
+        display: flex !important;
         bottom: 20px; right: 20px;
-        width: 90px;  /* Size thoda bada kiya taaki text clear dikhe */
-        height: 90px;
+        width: 85px; height: 85px;
+        align-items: center;
+        justify-content: center;
+        transform-origin: center center;
     }
     .badge-text { 
-        display: block !important; /* Text ko wapas visible kiya */
+        display: block !important; 
+        position: absolute;
+        inset: 0;
+        transform-origin: center center;
     } 
     .badge-icon { 
         width: 45px; 
         height: 45px; 
         font-size: 1.1rem; 
+        position: absolute;
+        z-index: 2;
     }
 
     /* Layout Adjustments */
