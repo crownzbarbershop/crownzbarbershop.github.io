@@ -246,10 +246,10 @@ ul { list-style: none; }
     height: 100vh; 
     min-height: 700px; 
     display: flex; 
-    align-items: center; /* CHANGED: Centers the card vertically so it doesn't push up into the nav */
+    align-items: center; 
     justify-content: flex-start; 
-    padding-top: 130px; /* NEW: Creates a permanent safe-zone for the fixed header */
-    padding-bottom: 0; /* CHANGED: Removed the bottom offset for perfect centering */
+    padding-top: 130px; 
+    padding-bottom: 0; 
     overflow: hidden; 
     z-index: 1;
 }
@@ -267,17 +267,35 @@ ul { list-style: none; }
 .hero-text-box {
     position: relative; 
     z-index: 2; 
-    padding: clamp(30px, 4vw, 50px); /* NEW: Fluid padding so it breathes better on smaller laptops */
-    max-width: 700px; /* CHANGED: Slightly narrowed for a sleeker proportion */
+    padding: clamp(30px, 4vw, 50px); 
+    max-width: 700px; 
     border-left: 4px solid var(--accent); 
     transform: translateY(0);
 }
 
+/* THE MOBILE FIX FOR THE HERO SECTION */
 @media (max-width: 768px) {
-    .hero-section { padding-bottom: 5vh; }
+    .hero-section { 
+        padding-top: 90px; 
+        padding-bottom: 40px; 
+        min-height: 100svh; 
+        height: auto; 
+    }
     .hero-bg-img { object-position: center 5%; }
     .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 80%); }
-    .hero-text-box { padding: 30px 25px; border-left: 3px solid var(--accent); margin-bottom: 20px; }
+    .hero-text-box { 
+        padding: 35px 25px; 
+        border-left: 3px solid var(--accent); 
+        width: 100%; 
+        margin-bottom: 0; 
+    }
+    .hero-title {
+        font-size: clamp(2.8rem, 13vw, 4rem);
+        margin-bottom: 20px;
+    }
+    .hero-desc {
+        font-size: 0.95rem;
+    }
 }
 
 .hero-subtitle { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
