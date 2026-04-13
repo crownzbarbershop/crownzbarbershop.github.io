@@ -261,7 +261,8 @@ ul { list-style: none; }
 
 .hero-overlay { 
     position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
+    /* FIX: Lighter gradient so the background image is clearly visible */
+    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0) 100%);
 }
 
 .hero-text-box {
@@ -282,7 +283,10 @@ ul { list-style: none; }
         height: auto; 
     }
     .hero-bg-img { object-position: center 5%; }
-    .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0) 80%); }
+    .hero-overlay { 
+        /* FIX: Lighter gradient for mobile as well */
+        background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0) 80%); 
+    }
     .hero-text-box { 
         padding: 35px 25px; 
         border-left: 3px solid var(--accent); 
