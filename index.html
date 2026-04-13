@@ -49,7 +49,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
@@ -91,26 +90,26 @@
         <a href="#" class="logo hover-btn"><i>Crownz</i></a>
         
         <div class="nav-links" id="navLinks">
-            <a href="#about" class="nav-text hover-btn">The Experience</a>
-            <a href="#services" class="nav-text hover-btn">Grooming Menu</a>
-            <a href="#portfolio" class="nav-text hover-btn">Portfolio</a>
+            <a href="#about" class="nav-text hover-btn mobile-close">The Experience</a>
+            <a href="#services" class="nav-text hover-btn mobile-close">Grooming Menu</a>
+            <a href="#portfolio" class="nav-text hover-btn mobile-close">Portfolio</a>
             
-            <div style="display: flex; gap: 20px; align-items: center;">
-                <a href="#location" class="link-icon hover-btn" title="Get Directions">
+            <div class="nav-social-icons">
+                <a href="#location" class="link-icon hover-btn mobile-close" title="Get Directions">
                     <i class="fa-solid fa-location-dot"></i>
                 </a>
-                <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="link-icon hover-btn" title="Follow us on Instagram">
+                <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="link-icon hover-btn mobile-close" title="Follow us on Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
 
-            <div class="magnetic-wrap">
+            <div class="magnetic-wrap nav-book-wrap">
                 <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="btn-parallax primary hover-btn">
                     <span class="btn-bg"></span><span class="btn-text">Book Now</span>
                 </a>
             </div>
         </div>
-        <button class="mobile-menu-btn hover-btn" id="menuBtn">
+        <button class="mobile-menu-btn hover-btn" id="menuBtn" aria-label="Toggle Menu">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
@@ -118,8 +117,7 @@
     <main id="smooth-wrapper">
         
         <section class="hero">
-            
-            <div class="hero-bg">
+            <div class="hero-bg colorize-on-scroll">
                 <img src="assets/images/hero-bg.jpg" alt="Barber Shop" class="hero-img">
             </div>
             
@@ -168,9 +166,8 @@
             </div>
 
             <div class="slider-wrapper gs-reveal delay-1">
-                <div class="ba-slider" id="baSlider">
+                <div class="ba-slider colorize-on-scroll" id="baSlider">
                     <div class="ba-image ba-before"></div>
-                    
                     <div class="ba-image ba-after" id="baAfter"></div>
                     
                     <div class="ba-label label-before">BEFORE</div>
@@ -199,10 +196,10 @@
                 </div>
                 
                 <div class="about-visuals gs-reveal">
-                    <div class="main-image">
+                    <div class="main-image colorize-on-scroll">
                         <img src="assets/images/master-barber.jpg" alt="Master Barber" data-speed="0.1" loading="lazy" decoding="async">
                     </div>
-                    <div class="sub-image">
+                    <div class="sub-image colorize-on-scroll">
                         <img src="assets/images/detail-fade.jpg" alt="Detail Fade" data-speed="0.15" loading="lazy" decoding="async">
                     </div>
                 </div>
@@ -455,13 +452,13 @@
                         </div>
                     </div>
 
-                    <div class="service-image-display">
+                    <div class="service-image-display colorize-on-scroll">
                         <img src="assets/images/service-preview.jpg" id="accordionImage" alt="Service Preview" loading="lazy" decoding="async">
                     </div>
                 </div>
                 
                 <div class="amenities-wrapper gs-reveal">
-                    <h3 style="font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--text-primary); margin-bottom: 40px; font-style: italic;">Amenities</h3>
+                    <h3 class="amenities-title">Amenities</h3>
                     <div class="amenities-grid">
                         <div class="amenity-item"><i class="fa-solid fa-car"></i> Parking space</div>
                         <div class="amenity-item"><i class="fa-solid fa-wifi"></i> Wi-Fi</div>
@@ -488,23 +485,23 @@
                 </div>
 
                 <div class="portfolio-gallery gs-reveal delay-1">
-                    <div class="p-item hover-trigger">
+                    <div class="p-item colorize-on-scroll hover-trigger">
                         <img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy" decoding="async">
                         <div class="p-title">Precision Fade</div>
                     </div>
-                    <div class="p-item hover-trigger">
+                    <div class="p-item colorize-on-scroll hover-trigger">
                         <img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy" decoding="async">
                         <div class="p-title">Hot Towel Shave</div>
                     </div>
-                    <div class="p-item hover-trigger">
+                    <div class="p-item colorize-on-scroll hover-trigger">
                         <img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy" decoding="async">
                         <div class="p-title">Master Tools</div>
                     </div>
-                    <div class="p-item hover-trigger">
+                    <div class="p-item colorize-on-scroll hover-trigger">
                         <img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy" decoding="async">
                         <div class="p-title">Lineup Detail</div>
                     </div>
-                    <div class="p-item hover-trigger">
+                    <div class="p-item colorize-on-scroll hover-trigger">
                         <img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy" decoding="async">
                         <div class="p-title">The Atmosphere</div>
                     </div>
@@ -589,7 +586,7 @@
         </section>
 
         <section id="location" class="location-section gs-reveal">
-            <div class="map-container">
+            <div class="map-container colorize-on-scroll">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.482701198546!2d-79.86284242345511!3d43.53388337110595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fe6ceb7c393%3A0xce6bf4b5db4a6562!2sCrownz%20Barbershop!5e0!3m2!1sen!2sin!4v1712837330561!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="map-overlay-card">
                     <h3>Crownz Barbershop</h3>
