@@ -170,19 +170,21 @@ if (window.matchMedia("(pointer: fine)").matches) {
 }
 
 // ==========================================================================
-// 6. PREMIUM LIVE ELEMENT (ROTATING KINETIC BADGE)
+// 6. PREMIUM LIVE ELEMENT (GLITCH-FREE ROTATING BADGE)
 // ==========================================================================
 const floatingBadge = document.querySelector('.floating-badge');
 const badgeText = document.querySelector('.badge-text');
 
 if (floatingBadge) {
-    gsap.set(floatingBadge, { scale: 0, opacity: 0, y: 50, transformOrigin: "center center" });
+    // Initial Setup
+    gsap.set(floatingBadge, { scale: 0, opacity: 0 });
     
+    // Smooth, non-bouncy pop-up to prevent SVG text deformation
     ScrollTrigger.create({
         trigger: ".about-section",
-        start: "top 75%", 
-        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, y: 0, pointerEvents: 'all', duration: 1.2, ease: "elastic.out(1, 0.4)" }),
-        onLeaveBack: () => gsap.to(floatingBadge, { scale: 0, opacity: 0, y: 50, pointerEvents: 'none', duration: 0.5, ease: "power3.in" })
+        start: "top 80%", 
+        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, pointerEvents: 'all', duration: 0.6, ease: "power3.out" }),
+        onLeaveBack: () => gsap.to(floatingBadge, { scale: 0, opacity: 0, pointerEvents: 'none', duration: 0.4, ease: "power3.in" })
     });
 
     if (badgeText) {
@@ -192,9 +194,10 @@ if (floatingBadge) {
         lenis.on('scroll', (e) => { scrollVelocity = e.velocity; });
 
         gsap.ticker.add(() => {
-            currentRotation += 0.4 + (Math.abs(scrollVelocity) * 0.08);
-            gsap.set(badgeText, { rotation: currentRotation });
-            scrollVelocity *= 0.9; 
+            // Base speed + kinetic speed from user scrolling
+            currentRotation += 0.5 + (Math.abs(scrollVelocity) * 0.15); 
+            gsap.set(badgeText, { rotation: currentRotation, transformOrigin: "center center" });
+            scrollVelocity *= 0.85; 
         });
     }
 }
@@ -329,7 +332,7 @@ if (marqueeContainer) {
 }
 
 // ==========================================================================
-// 11. UNIVERSAL SCROLL-TO-COLOR ENGINE (NEW)
+// 11. UNIVERSAL SCROLL-TO-COLOR ENGINE
 // ==========================================================================
 // This observer detects when photos enter the screen and adds the colorize class
 const colorizeElements = document.querySelectorAll('.colorize-on-scroll');
@@ -337,15 +340,13 @@ const colorizeElements = document.querySelectorAll('.colorize-on-scroll');
 const colorObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Blooms to color when scrolled into view
-            entry.target.classList.add('is-active');
+            entry.target.classList.add('is-active'); // Blooms to color
         } else {
-            // Fades back to black & white when it leaves the screen
-            entry.target.classList.remove('is-active');
+            entry.target.classList.remove('is-active'); // Fades to B&W
         }
     });
 }, {
-    threshold: 0.3 // Triggers when 30% of the image is visible on the screen
+    threshold: 0.3 // Triggers when 30% of the image is visible
 });
 
 colorizeElements.forEach(el => colorObserver.observe(el));
