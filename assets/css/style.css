@@ -15,7 +15,6 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Desktop Intelligent Cursor (Hidden on touch devices) */
 @media (hover: hover) and (pointer: fine) {
     body * { cursor: none !important; }
 }
@@ -49,7 +48,7 @@ body {
 }
 
 /* ==========================================================================
-   CLINICAL WIPE PRELOADER
+   CLINICAL WIPE PRELOADER & NOISE
    ========================================================================== */
 .preloader {
     position: fixed; inset: 0; background-color: var(--text-primary); z-index: 99999;
@@ -79,15 +78,13 @@ body {
     transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s, color 0.3s;
 }
 
-body.cursor-hover .cursor-follower {
-    width: 70px; height: 70px; background-color: rgba(255,255,255,1); border-color: transparent; mix-blend-mode: difference;
-}
+body.cursor-hover .cursor-follower { width: 70px; height: 70px; background-color: rgba(255,255,255,1); border-color: transparent; mix-blend-mode: difference; }
 body.cursor-hover .cursor-dot { opacity: 0; }
 body.cursor-drag .cursor-follower { width: 90px; height: 90px; background: transparent; border-color: #fff; color: #fff; mix-blend-mode: normal; backdrop-filter: blur(4px); }
 body.cursor-drag .cursor-dot { opacity: 0; }
 
 /* ==========================================================================
-   PREMIUM LIVE FLOATING ELEMENT
+   PREMIUM LIVE FLOATING ELEMENT (GLASSMORPHISM)
    ========================================================================== */
 .floating-badge {
     position: fixed; bottom: clamp(20px, 4vw, 40px); right: clamp(20px, 4vw, 40px);
@@ -96,8 +93,14 @@ body.cursor-drag .cursor-dot { opacity: 0; }
     z-index: 9000; text-decoration: none; color: var(--accent);
 }
 .badge-text { position: absolute; width: 100%; height: 100%; fill: var(--text-primary); font-family: var(--font-body); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-.badge-icon { position: relative; z-index: 2; font-size: clamp(1.2rem, 2vw, 1.5rem); background: var(--bg-core); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-.floating-badge:hover .badge-icon { background: var(--accent); color: var(--bg-core); border-color: var(--accent); transform: scale(1.1); }
+.badge-icon { 
+    position: relative; z-index: 2; font-size: clamp(1.2rem, 2vw, 1.5rem); 
+    background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+    border: 1px solid rgba(212, 175, 55, 0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+}
+.floating-badge:hover .badge-icon { background: var(--accent); color: var(--bg-core); border-color: var(--accent); transform: scale(1.15); }
 
 /* ==========================================================================
    MAGNETIC PARALLAX BUTTONS & LINKS
@@ -131,8 +134,6 @@ body.cursor-drag .cursor-dot { opacity: 0; }
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 400; }
 .container { max-width: 1600px; margin: 0 auto; padding: 0 5%; width: 100%; }
-
-/* Optimized GS Reveal State */
 .gs-reveal { opacity: 0; transform: translateY(30px); will-change: opacity, transform; }
 
 /* ==========================================================================
@@ -150,39 +151,38 @@ nav.scrolled { padding: 20px 5%; }
 .nav-social-icons { display: flex; gap: 20px; align-items: center; }
 
 /* ==========================================================================
-   HERO SECTION 
+   HERO SECTION (DESKTOP)
    ========================================================================== */
 .hero { 
-    min-height: 100svh; 
-    position: relative; display: flex; align-items: center; padding: 120px 5% 80px 5%; overflow: hidden; width: 100%; 
+    height: 100svh; position: relative; display: flex; align-items: center; padding: 0 5%; overflow: hidden; width: 100%; 
 }
 .hero-bg { position: absolute; top: -10%; left: 0; height: 120%; width: 100%; z-index: -2; will-change: transform; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-.hero-vignette { position: absolute; inset: 0; background: radial-gradient(circle at 70% 50%, transparent 0%, rgba(0,0,0,0.9) 110%); z-index: -1; }
-.hero-content { position: relative; z-index: 1; max-width: 1000px; width: 100%; display: flex; flex-direction: column; justify-content: center;}
+.hero-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 60%), radial-gradient(circle at 70% 50%, transparent 0%, rgba(0,0,0,0.8) 110%); z-index: -1; }
+.hero-content { position: relative; z-index: 1; max-width: 1000px; width: 100%; display: flex; flex-direction: column; justify-content: center; margin-top: -5vh;}
 
-.hero-badge { display: inline-block; align-self: flex-start; padding: 8px 16px; border: 1px solid var(--accent); border-radius: 50px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: clamp(20px, 4vh, 30px); color: var(--accent); backdrop-filter: blur(5px); overflow: hidden; }
+.hero-badge { display: inline-block; align-self: flex-start; padding: 8px 16px; border: 1px solid rgba(212, 175, 55, 0.5); border-radius: 50px; font-family: var(--font-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: clamp(20px, 4vh, 30px); color: var(--accent); background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); overflow: hidden; }
 .hero-badge span { display: inline-block; transform: translateY(100%); opacity: 0; }
 .hero-title { font-size: clamp(3.5rem, 10vw, 10rem); line-height: 0.9; letter-spacing: -2px; margin-bottom: clamp(20px, 4vh, 30px); text-transform: uppercase; overflow: hidden; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
 .hero-title span { display: block; transform: translateY(100%); opacity: 0; }
 .hero-title i { font-style: italic; font-weight: 300; color: var(--accent); }
-.hero-description { font-family: var(--font-body); font-size: clamp(1rem, 2vw, 1.2rem); color: #CCCCCC; line-height: 1.6; max-width: 600px; margin-bottom: clamp(30px, 6vh, 50px); text-shadow: 0 4px 15px rgba(0,0,0,0.8); overflow: hidden; font-weight: 300; }
+.hero-description { font-family: var(--font-body); font-size: clamp(1rem, 2vw, 1.25rem); color: #EAEAEA; line-height: 1.6; max-width: 600px; margin-bottom: clamp(30px, 6vh, 50px); text-shadow: 0 4px 20px rgba(0,0,0,0.9); overflow: hidden; font-weight: 300; }
 .hero-description span { display: inline-block; transform: translateY(100%); opacity: 0; }
 .hero-meta { display: flex; gap: 20px; align-items: center; overflow: hidden; flex-wrap: wrap; }
 .hero-meta > * { transform: translateY(100%); opacity: 0; }
 
-.hero-info-bar { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 2; overflow: hidden; flex-wrap: wrap; gap: 15px; }
-.hero-info-bar .info-item { font-family: var(--font-body); font-size: clamp(0.7rem, 1.5vw, 0.85rem); letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 10px; transform: translateY(100%); opacity: 0; }
+.hero-info-bar { position: absolute; bottom: 0; left: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 2; overflow: hidden; flex-wrap: wrap; gap: 15px; }
+.hero-info-bar .info-item { font-family: var(--font-body); font-size: clamp(0.7rem, 1.5vw, 0.85rem); letter-spacing: 2px; text-transform: uppercase; color: var(--text-primary); display: flex; align-items: center; gap: 10px; transform: translateY(100%); opacity: 0; font-weight: 500;}
 .hero-info-bar .info-item i { color: var(--accent); }
 
-#dynamic-status { background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
+#dynamic-status { background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 .status-indicator { width: 8px; height: 8px; border-radius: 50%; background-color: #888; display: inline-block; transition: all 0.3s ease; }
 .status-indicator.open { background-color: #4CAF50; box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); animation: pulseStatus 2s infinite; }
 .status-indicator.closed { background-color: #F44336; }
 @keyframes pulseStatus { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
 
 /* ==========================================================================
-   THE TRANSFORMATION (BEFORE & AFTER SLIDER)
+   THE TRANSFORMATION (PREMIUM BEFORE & AFTER SLIDER)
    ========================================================================== */
 .transformation-section { padding: clamp(80px, 12vh, 150px) 0; background: var(--surface-light); border-top: 1px solid rgba(255,255,255,0.05); }
 .transformation-header { margin-bottom: clamp(30px, 6vh, 60px); text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -194,17 +194,25 @@ nav.scrolled { padding: 20px 5%; }
 .ba-slider {
     position: relative; width: 100%; 
     aspect-ratio: 1 / 1; 
-    background: var(--bg-core); overflow: hidden; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    background: var(--bg-core); overflow: hidden; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.9);
     user-select: none; touch-action: pan-y;
 }
 .ba-image { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-image: url('../images/before-after.jpg'); background-size: 200% auto; background-repeat: no-repeat; pointer-events: none; }
 .ba-after { background-position: right center; z-index: 1; }
 .ba-before { background-position: left center; z-index: 2; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
 
+/* Glowing Premium Drag Handle */
 .ba-handle { position: absolute; top: 0; left: 50%; bottom: 0; width: 4px; background: transparent; z-index: 3; transform: translateX(-50%); cursor: ew-resize; display: flex; align-items: center; justify-content: center; }
-.ba-handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 10px rgba(0,0,0,0.8); }
-.ba-handle-button { width: 56px; height: 56px; background: var(--bg-core); border: 2px solid var(--accent); border-radius: 50%; color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: transform 0.3s ease, background 0.3s, color 0.3s; pointer-events: none; }
-.ba-handle:hover .ba-handle-button, .ba-slider.is-dragging .ba-handle-button { transform: scale(1.15); background: var(--accent); color: var(--bg-core); }
+.ba-handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 15px var(--accent); }
+.ba-handle-button { 
+    width: 60px; height: 60px; 
+    background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 2px solid var(--accent); border-radius: 50%; color: var(--accent); 
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9), 0 0 15px rgba(212, 175, 55, 0.3); 
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s; pointer-events: none; 
+}
+.ba-handle:hover .ba-handle-button, .ba-slider.is-dragging .ba-handle-button { transform: scale(1.15); background: rgba(212, 175, 55, 0.15); }
 
 .ba-label { position: absolute; top: clamp(15px, 3vw, 30px); padding: 8px 16px; background: rgba(0,0,0,0.65); color: var(--text-primary); font-family: var(--font-body); font-weight: 600; font-size: clamp(0.7rem, 1.5vw, 0.9rem); letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; border: 1px solid rgba(255,255,255,0.1); z-index: 4; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none; }
 .label-before { left: clamp(15px, 3vw, 30px); }
@@ -234,7 +242,7 @@ nav.scrolled { padding: 20px 5%; }
 .services-section { padding: clamp(100px, 15vh, 150px) 0; background: var(--surface); border-top: 1px solid rgba(255,255,255,0.05); width: 100%; }
 .services-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(40px, 6vw, 80px); align-items: flex-start; margin-top: clamp(40px, 8vh, 60px); }
 
-.service-image-display { position: sticky; top: 150px; height: 700px; overflow: hidden; background: var(--bg-core); border-radius: 2px; }
+.service-image-display { position: sticky; top: 150px; height: 700px; overflow: hidden; background: var(--bg-core); border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);}
 .service-image-display img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: opacity 0.4s ease, transform 1.2s ease, filter 0.8s ease; }
 .services-container:hover .service-image-display img { transform: scale(1.03); }
 
@@ -327,7 +335,7 @@ nav.scrolled { padding: 20px 5%; }
 .copyright { color: var(--text-muted); font-size: clamp(0.7rem, 1.5vw, 0.8rem); letter-spacing: 2px; text-transform: uppercase; text-align: center; }
 
 /* ==========================================================================
-   MOBILE & RESPONSIVE DESIGN ARCHITECTURE
+   MOBILE & RESPONSIVE DESIGN ARCHITECTURE (ULTIMATE FIX)
    ========================================================================== */
 @media (max-width: 1024px) {
     .about-grid, .services-container { grid-template-columns: 1fr; gap: 60px; }
@@ -336,22 +344,46 @@ nav.scrolled { padding: 20px 5%; }
     .map-overlay-card { top: auto; bottom: 5%; transform: none; width: 90%; left: 5%; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) { /* Increased breakpoint to protect large phones & small tablets */
     .cursor-wrapper { display: none !important; }
+    * { cursor: auto !important; }
     
-    /* Hero Adjustments - PERFECT ZOOM OUT EFFECT */
+    /* 1. HERO SECTION 100% COLLISION FREE & ZOOMED OUT */
     .hero { 
-        min-height: unset; 
-        height: 60svh; 
-        padding-top: 100px; 
+        height: auto; 
+        min-height: 100svh; 
+        flex-direction: column; 
+        justify-content: flex-end; /* Pushes content down */
+        align-items: flex-start;
+        padding-top: 120px; 
         padding-bottom: 40px; 
     }
     .hero-bg img { 
-        object-position: center 15%; 
+        object-position: center 10%; /* Locks the shop board in view */
     }
-    .hero-info-bar { flex-direction: column; gap: 15px; align-items: flex-start; }
+    .hero-content {
+        margin-top: auto; 
+        padding-bottom: 10px;
+        z-index: 2;
+    }
+    .hero-title { font-size: clamp(3.5rem, 14vw, 5rem); }
     
-    /* Mobile Floating Live Badge (Glitch 100% Fixed) */
+    /* Pushes Info Bar into Normal Flow (Fixes Crash) */
+    .hero-info-bar { 
+        position: relative; 
+        bottom: auto; left: auto;
+        width: 100%; 
+        padding: 20px 0 0 0; 
+        background: transparent; 
+        border-top: 1px solid rgba(255,255,255,0.15); 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 12px;
+        margin-top: 20px;
+        z-index: 2;
+    }
+    
+    /* 2. MOBILE FLOATING BADGE (GLITCH FREE) */
     .floating-badge {
         display: flex !important;
         bottom: 20px; right: 20px;
@@ -372,32 +404,31 @@ nav.scrolled { padding: 20px 5%; }
         z-index: 2;
     }
 
+    /* 3. BULLETPROOF MOBILE NAVIGATION OVERLAY */
+    .nav-links { 
+        position: fixed; top: 0; right: -100%; width: 100vw; height: 100svh; 
+        background: rgba(5, 5, 5, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        flex-direction: column; justify-content: center; gap: 40px; 
+        transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1); z-index: 10000; 
+    }
+    .nav-links.active { right: 0; }
+    .mobile-menu-btn { display: block; z-index: 10001; position: relative;}
+
     /* Layout Adjustments */
     .about-visuals { aspect-ratio: 1 / 1; width: 100%; margin: 0 auto; }
     .main-image { width: 90%; height: 90%; }
     .sub-image { width: 65%; height: 65%; border-width: 8px; }
     
-    /* Before/After Mobile adjustments */
     .ba-slider { aspect-ratio: 1 / 1; }
     .ba-handle-button { width: 44px; height: 44px; font-size: 1rem; }
     .ba-label { font-size: 0.7rem; padding: 6px 12px; }
     
-    /* Native scroll snap for portfolio on mobile */
     .portfolio-gallery { 
         flex-direction: row; height: 50svh; overflow-x: auto; scroll-snap-type: x mandatory; 
         -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 10px; padding-bottom: 10px; 
     }
     .portfolio-gallery::-webkit-scrollbar { display: none; }
     .p-item { flex: 0 0 85%; scroll-snap-align: center; height: 100%; }
-
-    /* Interactive Mobile Navigation Overlay */
-    .nav-links { 
-        position: fixed; top: 0; right: -100%; width: 100vw; height: 100svh; 
-        background: var(--bg-core); flex-direction: column; justify-content: center; gap: 40px; 
-        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1); z-index: 10000; 
-    }
-    .nav-links.active { right: 0; }
-    .mobile-menu-btn { display: block; z-index: 10001; position: relative;}
     
     .service-row { flex-direction: column; align-items: flex-start; gap: 15px; }
     .service-price { text-align: left; }
