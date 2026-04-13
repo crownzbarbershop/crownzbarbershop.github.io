@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Crownz | Luxury Barber Shop</title>
-    <meta name="description" content="Crownz Barber Shop. Crafting your signature look. Premium grooming and haircuts in Milton.">
     
+    <title>Crownz | High-End Grooming & Styling in Milton</title>
+    <meta name="description" content="Crownz Barber Shop. Crafting your signature look. Experience premium grooming, precision fades, and hot towel shaves in Milton, ON.">
+    <meta name="keywords" content="Barber Shop Milton, Premium Haircut, Precision Fades, Hot Towel Shave, Mens Grooming, Crownz Barber Shop">
+    <meta name="author" content="Crownz Barber Shop">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Crownz | High-End Grooming & Styling">
+    <meta property="og:description" content="Crafting your signature look. Premium grooming and haircuts in Milton.">
+    <meta property="og:image" content="assets/images/hero-bg.jpg">
+    <meta property="og:url" content="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton">
+    <meta property="og:type" content="website">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -48,7 +58,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
@@ -56,573 +67,391 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-<body class="locked">
+<body class="loading">
 
-    <div class="preloader" id="preloader">
-        <div class="preloader-text">
-            <span class="p-char">C</span><span class="p-char">R</span><span class="p-char">O</span><span class="p-char">W</span><span class="p-char">N</span><span class="p-char">Z</span>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+    <div class="cursor-text"></div>
+
+    <div class="preloader">
+        <div class="preloader-brand">
+            <span class="char">C</span><span class="char">R</span><span class="char">O</span><span class="char">W</span><span class="char">N</span><span class="char">Z</span>
         </div>
+        <div class="preloader-bar"><div class="preloader-progress"></div></div>
     </div>
 
-    <div class="noise"></div>
-
-    <div class="cursor-wrapper">
-        <div class="cursor-dot"></div>
-        <div class="cursor-follower" id="cursorText"></div>
-    </div>
-
-    <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="floating-badge hover-btn" id="floatingBadge" aria-label="Book Appointment">
-        <div class="badge-text">
+    <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="floating-book-btn hover-target" aria-label="Book Appointment">
+        <div class="circular-text">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
-                <text font-size="11.5">
-                    <textPath href="#circlePath" startOffset="0%">RESERVE SEAT • BOOK NOW • </textPath>
-                </text>
+                <path id="textPath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+                <text><textPath href="#textPath" startOffset="0%">RESERVE SEAT • BOOK NOW • RESERVE SEAT • </textPath></text>
             </svg>
         </div>
-        <div class="badge-icon">
-            <i class="fa-solid fa-scissors"></i>
-        </div>
+        <i class="fa-solid fa-scissors" style="transform: rotate(0deg); font-size: 1.5rem;"></i>
     </a>
 
-    <nav id="navbar">
-        <a href="#" class="logo hover-btn"><i>Crownz</i></a>
+    <header class="site-header">
+        <a href="#" class="brand-logo hover-target">Crownz.</a>
         
-        <div class="nav-links" id="navLinks">
-            <a href="#about" class="nav-text hover-btn mobile-close">The Experience</a>
-            <a href="#services" class="nav-text hover-btn mobile-close">Grooming Menu</a>
-            <a href="#portfolio" class="nav-text hover-btn mobile-close">Portfolio</a>
-            
-            <div class="nav-social-icons">
-                <a href="#location" class="link-icon hover-btn mobile-close" title="Get Directions">
-                    <i class="fa-solid fa-location-dot"></i>
-                </a>
-                <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="link-icon hover-btn mobile-close" title="Follow us on Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="#ethos" class="nav-link hover-target">The Experience</a></li>
+                <li><a href="#services" class="nav-link hover-target">Menu</a></li>
+                <li><a href="#portfolio" class="nav-link hover-target">Lookbook</a></li>
+                <li><a href="#location" class="nav-link hover-target">Location</a></li>
+            </ul>
+        </nav>
 
-            <div class="magnetic-wrap nav-book-wrap">
-                <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="btn-parallax primary hover-btn">
-                    <span class="btn-bg"></span><span class="btn-text">Book Now</span>
-                </a>
+        <div class="header-actions">
+            <div class="shop-status" id="dynamic-status">
+                <div class="status-dot"></div>
+                <span class="status-txt">Checking</span>
             </div>
+            <button class="menu-toggle hover-target" aria-label="Open Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
         </div>
-        <button class="mobile-menu-btn hover-btn" id="menuBtn" aria-label="Toggle Menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
+    </header>
+
+    <div class="mobile-menu-overlay">
+        <ul class="mobile-nav-list">
+            <li><a href="#ethos" class="mobile-nav-link">The Experience</a></li>
+            <li><a href="#services" class="mobile-nav-link">Grooming Menu</a></li>
+            <li><a href="#portfolio" class="mobile-nav-link">Lookbook</a></li>
+            <li><a href="#location" class="mobile-nav-link">Location</a></li>
+        </ul>
+        <div class="mobile-socials" style="margin-top: 40px;">
+            <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="hover-target" style="font-size: 2rem; color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
 
     <main id="smooth-wrapper">
-        
-        <section class="hero">
-            <div class="hero-bg colorize-on-scroll is-active">
-                <img src="assets/images/hero-bg.jpg" alt="Barber Shop" class="hero-img" loading="eager">
-            </div>
+        <div id="smooth-content">
             
-            <div class="hero-vignette"></div>
-            
-            <div class="hero-content">
-                <div class="hero-badge"><span>Premium Grooming Experience</span></div>
-                <h1 class="hero-title">
-                    <span class="ht-line">Crownz</span>
-                    <span class="ht-line"><i>Barber Shop</i></span>
-                </h1>
-                <p class="hero-description">
-                    <span>Milton's premier grooming destination. We combine</span>
-                    <span>traditional craftsmanship with avant-garde techniques</span>
-                    <span>to deliver an unparalleled aesthetic and luxury service.</span>
-                </p>
-                <div class="hero-meta">
-                    <div class="magnetic-wrap">
-                        <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="btn-parallax primary hover-btn">
-                            <span class="btn-bg"></span><span class="btn-text">Book Appointment <i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
-                    </div>
-                    <div class="magnetic-wrap">
-                        <a href="#services" class="btn-parallax hover-btn">
-                            <span class="btn-bg"></span><span class="btn-text">Discover Services</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-info-bar">
-                <div class="info-item" id="dynamic-status">
-                    <span class="status-indicator"></span>
-                    <span class="status-text">Checking Status...</span>
-                </div>
-                <div class="info-item"><i class="fa-solid fa-clock"></i> Mon-Sat 9AM-7PM | Sun 10AM-7PM</div>
-                <div class="info-item"><i class="fa-solid fa-star"></i> 5-Star Rated Experience</div>
-            </div>
-        </section>
-
-        <section id="transformation" class="transformation-section container">
-            <div class="transformation-header gs-reveal">
-                <h2 class="section-title">The<br><span>Transformation</span></h2>
-                <div class="section-line"></div>
-                <p>Slide to witness the precision. Drag the interactive handle to reveal the final masterpiece.</p>
-            </div>
-
-            <div class="slider-wrapper gs-reveal delay-1">
-                <div class="ba-slider colorize-on-scroll" id="baSlider">
-                    <div class="ba-image ba-before"></div>
-                    <div class="ba-image ba-after" id="baAfter"></div>
-                    
-                    <div class="ba-label label-before">BEFORE</div>
-                    <div class="ba-label label-after">AFTER</div>
-
-                    <div class="ba-handle" id="baHandle">
-                        <div class="ba-handle-line"></div>
-                        <div class="ba-handle-button hover-btn">
-                            <i class="fa-solid fa-arrows-left-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-section container">
-            <div class="about-grid">
-                <div class="about-text gs-reveal">
-                    <h2 class="section-title">The<br><span>Experience</span></h2>
-                    <div class="section-line"></div>
-                    <p>More than just a haircut, <strong>Crownz</strong> is an institution of modern luxury grooming. We blend traditional barbering techniques with stark, avant-garde styling.</p>
-                    <p>Step into a realm where high-end aesthetics meet flawless execution. Our master barbers are artisans, meticulously sculpting your personal brand with absolute precision.</p>
-                    <div class="magnetic-wrap" style="margin-top: 20px;">
-                        <a href="#services" class="btn-parallax hover-btn"><span class="btn-bg"></span><span class="btn-text">Explore Menu</span></a>
-                    </div>
+            <section class="hero-section">
+                <div id="particles-js"></div>
+                
+                <div class="hero-image-wrapper gs-reveal-scale">
+                    <img src="assets/images/hero-bg.jpg" alt="Crownz Barber Shop Storefront" class="hero-bg-img" loading="eager">
+                    <div class="hero-overlay"></div>
                 </div>
                 
-                <div class="about-visuals gs-reveal">
-                    <div class="main-image colorize-on-scroll">
-                        <img src="assets/images/master-barber.jpg" alt="Master Barber" data-speed="0.1" loading="lazy" decoding="async">
-                    </div>
-                    <div class="sub-image colorize-on-scroll">
-                        <img src="assets/images/detail-fade.jpg" alt="Detail Fade" data-speed="0.15" loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="services-section">
-            <div class="container">
-                <h2 class="section-title gs-reveal">Grooming<br><span>Menu</span></h2>
-                <div class="section-line gs-reveal"></div>
-                
-                <div class="services-container gs-reveal">
-                    <div class="accordion-wrapper">
+                <div class="container" style="z-index: 5;">
+                    <div class="hero-text-box glass-panel gs-reveal-up">
+                        <div class="hero-subtitle">Premium Grooming Experience</div>
+                        <h1 class="hero-title">
+                            <div class="title-line"><span>Crafting Your</span></div>
+                            <div class="title-line"><span class="italic-serif accent-text">Signature Look.</span></div>
+                        </h1>
+                        <p class="hero-desc">Milton's premier grooming destination. We combine traditional craftsmanship with avant-garde techniques to deliver an unparalleled aesthetic and luxury service.</p>
                         
-                        <div class="accordion-item active">
-                            <button class="accordion-header hover-btn" data-img="assets/images/precision-fade.jpg">
-                                Hair & Beard 👦🏻 <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Men's Haircut / Head Shave</span>
-                                        <div class="service-desc">Tailored to your head shape and style. Get a precision haircut or head shave, finished...</div>
-                                        <div class="service-duration">30 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$30.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Haircut and beard trim & Lineup with blade</span>
-                                        <div class="service-desc">Men's Haircut / Head Shave + Beard Trim & Line Up with blade. Our most popular...</div>
-                                        <div class="service-duration">45 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$50.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Traditional Hot Towel Shave 🔥</span>
-                                        <div class="service-desc">Experience the classic barber ritual. A smooth, close straight-razor shave...</div>
-                                        <div class="service-duration">20 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$25.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Beard trim and line up with blade</span>
-                                        <div class="service-desc">Complete beard maintenance using professional clippers and a straight razor...</div>
-                                        <div class="service-duration">20 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$20.00</span>
-                                </div>
-                                <div class="service-row hover-btn category-divider">
-                                    <div class="service-info">
-                                        <span class="service-name highlight-accent">Under 17</span>
-                                        <div class="service-desc">Precision grooming for the next generation. Kids under 10 are $20, and...</div>
-                                    </div>
-                                </div>
-                                <div class="service-row hover-btn indented-row">
-                                    <div class="service-info">
-                                        <span class="service-name small-title">Kids Under 10 👦🏻</span>
-                                        <div class="service-duration">30 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$20.00</span>
-                                </div>
-                                <div class="service-row hover-btn indented-row">
-                                    <div class="service-info">
-                                        <span class="service-name small-title">Students 👨🏻‍🎓</span>
-                                        <div class="service-duration">30 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$25.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Senior's haircut (60+ years old) 👴🏼</span>
-                                        <div class="service-desc">Sit back and relax while we handle your style. We focus on comfort and precision...</div>
-                                        <div class="service-duration">30 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$25.00</span>
-                                </div>
+                        <div style="margin-top: 40px;">
+                            <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="primary-btn hover-target">
+                                <span class="btn-text">Book Appointment <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
+                                <span class="btn-bg"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="marquee-section gs-reveal-up">
+                <div class="marquee-inner">
+                    <span class="marquee-text">MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
+                    <span class="marquee-text">MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
+                </div>
+            </div>
+
+            <section id="ethos" class="ethos-section">
+                <div class="floating-shape shape-1" data-speed="1.2"></div>
+                
+                <div class="container">
+                    <div class="ethos-grid">
+                        <div class="ethos-content gs-reveal-left">
+                            <h2 class="section-heading">The<br><span class="italic-serif accent-text">Experience</span></h2>
+                            <p class="lead-text">More than just a haircut, Crownz is an institution of modern luxury grooming.</p>
+                            <p class="body-text">We blend traditional barbering techniques with stark, avant-garde styling. Step into a realm where high-end aesthetics meet flawless execution. Our master barbers are artisans, meticulously sculpting your personal brand with absolute precision.</p>
+                            
+                            <div style="margin-top: 50px;">
+                                <a href="#portfolio" class="primary-btn hover-target" style="padding: 14px 28px; font-size: 0.75rem;">
+                                    <span class="btn-text">View Lookbook</span>
+                                    <span class="btn-bg"></span>
+                                </a>
                             </div>
                         </div>
-
-                        <div class="accordion-item">
-                            <button class="accordion-header hover-btn" data-img="assets/images/hot-towel-shave.jpg">
-                                Facial Waxing & Threading 🧑🏻 <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">The Clean Up (Wax & Thread Combo) ✨</span>
-                                        <div class="service-desc">The comprehensive detail package. Includes precision threading and waxing...</div>
-                                        <div class="service-duration">20 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$24.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Eyebrows Threading 〰️</span>
-                                        <div class="service-desc">Targeted, laser-sharp precision for the perfect brow shape. A clean, defined...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$8.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Ear Waxing 👂🏼</span>
-                                        <div class="service-desc">Essential facial grooming to remove unwanted ear hair. Quick, effective, and...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$5.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Nose Waxing 👃🏼</span>
-                                        <div class="service-desc">Effective and quick hair removal for a clean-cut appearance. Essential detail...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$5.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Eyebrows waxing 〰️</span>
-                                        <div class="service-desc">Fast and effective eyebrow grooming for a clean look. A great addition to any haircu...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$10.00</span>
-                                </div>
+                        <div class="ethos-visuals gs-reveal-right">
+                            <div class="graphic-frame" data-speed="0.95"></div>
+                            <div class="img-wrap primary-img hover-zoom" data-speed="0.9">
+                                <img src="assets/images/master-barber.jpg" alt="Master Barber" loading="lazy">
+                            </div>
+                            <div class="img-wrap secondary-img hover-zoom" data-speed="1.15">
+                                <img src="assets/images/detail-fade.jpg" alt="Precision Detailing" loading="lazy">
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        <div class="accordion-item">
-                            <button class="accordion-header hover-btn" data-img="assets/images/master-tools.jpg">
-                                Coloring & Personal Care 💈 <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <div class="service-row hover-btn category-divider">
-                                    <div class="service-info">
-                                        <span class="service-name highlight-accent">Signature Coloring</span>
-                                        <div class="service-desc">Professional gray blending or coloring tailored to your look. From short hair to f...</div>
-                                    </div>
-                                </div>
-                                <div class="service-row hover-btn indented-row">
-                                    <div class="service-info">
-                                        <span class="service-name small-title">Beard</span>
-                                        <div class="service-duration">15 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$20.00</span>
-                                </div>
-                                <div class="service-row hover-btn indented-row">
-                                    <div class="service-info">
-                                        <span class="service-name small-title">Short Hair</span>
-                                        <div class="service-duration">20 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$30.00</span>
-                                </div>
-                                <div class="service-row hover-btn indented-row">
-                                    <div class="service-info">
-                                        <span class="service-name small-title">Both</span>
-                                        <div class="service-duration">30 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$50.00</span>
-                                </div>
+            <section class="transformation-section">
+                <div class="container">
+                    <div class="text-center gs-reveal-up">
+                        <h2 class="section-heading">The<br><span class="italic-serif accent-text">Transformation</span></h2>
+                        <p class="sub-heading">Slide to witness the precision. Drag to reveal the final masterpiece.</p>
+                    </div>
+                    
+                    <div class="slider-container gs-reveal-scale drag-target">
+                        <div class="ba-wrapper" id="baSlider">
+                            <div class="ba-image ba-under" style="background-image: url('assets/images/before-after.jpg'); background-position: right center; background-size: 200%;"></div>
+                            <div class="ba-image ba-over" style="background-image: url('assets/images/before-after.jpg'); background-position: left center; background-size: 200%;"></div>
+                            <div class="ba-handle">
+                                <div class="handle-line"></div>
+                                <div class="handle-btn"><i class="fa-solid fa-arrows-left-right"></i></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        <div class="accordion-item">
-                            <button class="accordion-header hover-btn" data-img="assets/images/detail-fade.jpg">
-                                Facial Combos & Masks 💎 <i class="fa-solid fa-chevron-down"></i>
-                            </button>
-                            <div class="accordion-content">
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Full Circle ⭕️</span>
-                                        <div class="service-desc">A multi-step rejuvenation including Stea...</div>
-                                        <div class="service-duration">35 MIN</div>
+            <section id="services" class="services-section">
+                <div class="floating-shape shape-2" data-speed="0.8"></div>
+                
+                <div class="container">
+                    <div class="services-layout">
+                        <div class="services-list-col gs-reveal-left">
+                            <h2 class="section-heading mb-large">Grooming<br><span class="italic-serif accent-text">Menu</span></h2>
+                            
+                            <div class="service-accordion">
+                                
+                                <div class="accordion-item active" data-image="assets/images/precision-fade.jpg">
+                                    <div class="accordion-header hover-target">
+                                        <h3>Hair & Beard</h3>
+                                        <div class="icon-cross"></div>
                                     </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$65.00</span>
+                                    <div class="accordion-body">
+                                        <ul class="service-items">
+                                            <li><div class="s-info"><h4>Men's Haircut / Head Shave</h4><p>Tailored to your head shape and style.</p></div><div class="s-price">$30</div></li>
+                                            <li><div class="s-info"><h4>Haircut, beard trim & Lineup</h4><p>Our most popular comprehensive package.</p></div><div class="s-price">$50</div></li>
+                                            <li><div class="s-info"><h4>Traditional Hot Towel Shave</h4><p>Classic straight-razor smoothness.</p></div><div class="s-price">$25</div></li>
+                                            <li><div class="s-info"><h4>Beard trim and line up</h4><p>Complete beard maintenance with blade.</p></div><div class="s-price">$20</div></li>
+                                            <li class="category-divider"><div class="s-info"><h4 class="accent-text" style="margin-top: 20px;">Under 17 & Seniors</h4></div></li>
+                                            <li><div class="s-info"><h4>Kids Under 10</h4></div><div class="s-price">$20</div></li>
+                                            <li><div class="s-info"><h4>Students</h4></div><div class="s-price">$25</div></li>
+                                            <li><div class="s-info"><h4>Senior's haircut (60+)</h4></div><div class="s-price">$25</div></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Facial Combo</span>
-                                        <div class="service-desc">Hit the reset 🔄 button and go out with confidence. A professional four-step...</div>
-                                        <div class="service-duration">25 MIN</div>
+
+                                <div class="accordion-item" data-image="assets/images/hot-towel-shave.jpg">
+                                    <div class="accordion-header hover-target">
+                                        <h3>Waxing & Threading</h3>
+                                        <div class="icon-cross"></div>
                                     </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$50.00</span>
+                                    <div class="accordion-body">
+                                        <ul class="service-items">
+                                            <li><div class="s-info"><h4>The Clean Up (Combo)</h4><p>Precision threading and waxing detail package.</p></div><div class="s-price">$24</div></li>
+                                            <li><div class="s-info"><h4>Eyebrows Threading</h4><p>Laser-sharp precision shape.</p></div><div class="s-price">$8</div></li>
+                                            <li><div class="s-info"><h4>Ear Waxing</h4><p>Essential facial grooming.</p></div><div class="s-price">$5</div></li>
+                                            <li><div class="s-info"><h4>Nose Waxing</h4><p>Quick hair removal for a clean-cut look.</p></div><div class="s-price">$5</div></li>
+                                            <li><div class="s-info"><h4>Eyebrows waxing</h4><p>Fast and effective brow grooming.</p></div><div class="s-price">$10</div></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Face Steam</span>
-                                        <div class="service-desc">Soften your skin and open your pores with a professional steam treatment. The...</div>
-                                        <div class="service-duration">15 MIN</div>
+
+                                <div class="accordion-item" data-image="assets/images/master-tools.jpg">
+                                    <div class="accordion-header hover-target">
+                                        <h3>Coloring</h3>
+                                        <div class="icon-cross"></div>
                                     </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$20.00</span>
+                                    <div class="accordion-body">
+                                        <ul class="service-items">
+                                            <li><div class="s-info"><h4>Beard Coloring</h4><p>Professional gray blending tailored to you.</p></div><div class="s-price">$20</div></li>
+                                            <li><div class="s-info"><h4>Short Hair Coloring</h4><p>Precision color application.</p></div><div class="s-price">$30</div></li>
+                                            <li><div class="s-info"><h4>Both (Hair & Beard)</h4><p>Complete signature coloring package.</p></div><div class="s-price">$50</div></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Exfoliating Scrub</span>
-                                        <div class="service-desc">The ultimate deep-cleansing facial scrub. Designed to exfoliate and refresh your...</div>
-                                        <div class="service-duration">5 MIN</div>
+
+                                <div class="accordion-item" data-image="assets/images/service-preview.jpg">
+                                    <div class="accordion-header hover-target">
+                                        <h3>Facials & Masks</h3>
+                                        <div class="icon-cross"></div>
                                     </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$15.00</span>
+                                    <div class="accordion-body">
+                                        <ul class="service-items">
+                                            <li><div class="s-info"><h4>Full Circle</h4><p>Multi-step rejuvenation and steam.</p></div><div class="s-price">$65</div></li>
+                                            <li><div class="s-info"><h4>Facial Combo</h4><p>Hit the reset button with a 4-step process.</p></div><div class="s-price">$50</div></li>
+                                            <li><div class="s-info"><h4>Face Steam</h4><p>Soften your skin and open your pores.</p></div><div class="s-price">$20</div></li>
+                                            <li><div class="s-info"><h4>Exfoliating Scrub</h4><p>Deep-cleansing facial scrub.</p></div><div class="s-price">$15</div></li>
+                                            <li><div class="s-info"><h4>Mint Whitening Face Mask</h4><p>Brighten your complexion.</p></div><div class="s-price">$15</div></li>
+                                            <li><div class="s-info"><h4>Black peel-off mask</h4><p>Target impurities and blackheads.</p></div><div class="s-price">$10</div></li>
+                                            <li><div class="s-info"><h4>24k Undereye Mask</h4><p>Banish puffiness with premium gold.</p></div><div class="s-price">$10</div></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Mint Whitening Face Mask</span>
-                                        <div class="service-desc">Brighten your complexion and hit the refresh button. This mint-infused mask...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$15.00</span>
+
+                            </div>
+
+                            <div class="amenities-grid gs-reveal-up" style="margin-top: 80px; padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.05);">
+                                <h3 class="italic-serif text-muted" style="margin-bottom: 25px; font-size: 1.2rem; width: 100%; letter-spacing: 2px; text-transform: uppercase;">Shop Amenities</h3>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                    <div class="amenity-item"><i class="fa-solid fa-car accent-text" style="width: 30px;"></i> Parking space</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-wifi accent-text" style="width: 30px;"></i> Wi-Fi</div>
+                                    <div class="amenity-item"><i class="fa-regular fa-credit-card accent-text" style="width: 30px;"></i> Credit cards</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-wheelchair accent-text" style="width: 30px;"></i> Accessible</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-paw accent-text" style="width: 30px;"></i> Pets allowed</div>
+                                    <div class="amenity-item"><i class="fa-solid fa-child accent-text" style="width: 30px;"></i> Child-friendly</div>
                                 </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">Black peel-off mask (Facial Mask)</span>
-                                        <div class="service-desc">Deep-cleansing active ingredients target impurities and blackheads, peeling away...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$10.00</span>
-                                </div>
-                                <div class="service-row hover-btn">
-                                    <div class="service-info">
-                                        <span class="service-name">24k Undereye Mask</span>
-                                        <div class="service-desc">Rejuvenate your look and banish puffiness. This premium 24k gold mask...</div>
-                                        <div class="service-duration">5 MIN</div>
-                                    </div>
-                                    <span class="service-spacer"></span>
-                                    <span class="service-price">$10.00</span>
+                            </div>
+
+                        </div>
+
+                        <div class="services-image-col gs-reveal-right">
+                            <div class="sticky-image-container">
+                                <div class="graphic-backdrop"></div>
+                                <div class="sticky-image-wrapper">
+                                    <img src="assets/images/precision-fade.jpg" alt="Service Preview" id="servicePreviewImg">
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <div class="service-image-display colorize-on-scroll">
-                        <img src="assets/images/service-preview.jpg" id="accordionImage" alt="Service Preview" loading="lazy" decoding="async">
+            <section id="portfolio" class="portfolio-section">
+                <div class="container">
+                    <h2 class="section-heading gs-reveal-up">The<br><span class="italic-serif accent-text">Lookbook</span></h2>
+                </div>
+                
+                <div class="horizontal-scroll-wrapper drag-target gs-reveal-up">
+                    <div class="portfolio-track">
+                        <div class="port-card">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy"></div>
+                            <h3 class="port-title">Precision Fade</h3>
+                        </div>
+                        <div class="port-card">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy"></div>
+                            <h3 class="port-title">Hot Towel Shave</h3>
+                        </div>
+                        <div class="port-card">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy"></div>
+                            <h3 class="port-title">Master Tools</h3>
+                        </div>
+                        <div class="port-card">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy"></div>
+                            <h3 class="port-title">Lineup Detail</h3>
+                        </div>
+                        <div class="port-card">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy"></div>
+                            <h3 class="port-title">The Atmosphere</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews-section">
+                <div class="floating-shape shape-3" data-speed="1.5"></div>
+                
+                <div class="container">
+                    <div class="reviews-header gs-reveal-up" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <h2 class="section-heading" style="margin: 0;">Client<br><span class="italic-serif accent-text">Voices</span></h2>
+                        <a href="https://www.google.com/search?q=crownz+barber+shop" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
+                            <span class="btn-text" style="font-size: 0.75rem;">Google Reviews <i class="fa-brands fa-google" style="margin-left: 8px;"></i></span>
+                            <span class="btn-bg"></span>
+                        </a>
+                    </div>
+                    
+                    <div class="horizontal-scroll-wrapper drag-target gs-reveal-up" style="padding-top: 60px; margin-left: -5%;">
+                        <div class="portfolio-track" style="gap: 30px; padding-left: 5%;">
+                            
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade, and the appointment was on time! I did not have to sit around waiting hours..."</p>
+                                <div class="reviewer"><span class="r-name">Essa Ali-Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"I had an amazing experience at Crown barber shop. The staff were extremely friendly and welcoming... The barbers are true professionals who know exactly what they’re doing."</p>
+                                <div class="reviewer"><span class="r-name">Mohammad Yaseen</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. The staff are professional, the shop is clean, and they really pay attention to detail. My fade came out sharp."</p>
+                                <div class="reviewer"><span class="r-name">SAMI Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Mo has been great. I have finally found my barber in Milton. He is expert, understands your demands, works with you to give you the best suited hair and beard. Amazing."</p>
+                                <div class="reviewer"><span class="r-name">Safi Rajput AMJC</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade... it’s a local business I will very much continue to visit and support!!!"</p>
+                                <div class="reviewer"><span class="r-name">Essa Ali-Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"I had an amazing experience at Crown barber shop. The atmosphere is comfortable, and you really feel valued. They gave me one of the best haircuts I’ve ever had."</p>
+                                <div class="reviewer"><span class="r-name">Mohammad Yaseen</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. Great atmosphere and solid customer service — definitely coming back."</p>
+                                <div class="reviewer"><span class="r-name">SAMI Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                                <p>"Mo has been great. I have finally found my barber in Milton... Above all, he is not over priced at all! Amazing."</p>
+                                <div class="reviewer"><span class="r-name">Safi Rajput AMJC</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="location" class="map-section gs-reveal-up" style="position: relative; height: 80vh; width: 100%;">
+                <div style="width: 100%; height: 100%; background: #000;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.427616631623!2d-79.8624562!3d43.5338834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fc25091c557%3A0xc35048d08c7e92fa!2s1260%20Main%20St%20E%2C%20Milton%2C%20ON%20L9T%208M7%2C%20Canada!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%; border: none;" class="map-iframe" title="Crownz Barber Shop Location"></iframe>
+                </div>
+                
+                <div class="glass-panel map-overlay-card" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); padding: 50px; max-width: 450px; z-index: 10; border-left: 4px solid var(--accent);">
+                    <h3 class="italic-serif accent-text" style="font-size: 3rem; margin-bottom: 10px;">Crownz.</h3>
+                    <p style="color: #ccc; margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;">1260 Main St E<br>Milton, ON L9T 8M7</p>
+                    <a href="https://www.google.com/maps/dir//1260+Main+St+E,+Milton,+ON+L9T+8M7" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
+                        <span class="btn-text">Get Directions <i class="fa-solid fa-location-arrow" style="margin-left: 8px;"></i></span>
+                        <span class="btn-bg"></span>
+                    </a>
+                </div>
+            </section>
+
+            <footer class="site-footer" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; background: var(--bg-base); padding-top: 150px; overflow: hidden;">
+                <div class="container gs-reveal-scale" style="margin-bottom: 80px; position: relative; z-index: 5;">
+                    <div class="glass-panel" style="padding: 80px 40px; text-align: center; max-width: 900px; margin: 0 auto; border: 1px solid rgba(0, 194, 255, 0.3); box-shadow: 0 0 80px rgba(0, 194, 255, 0.1);">
+                        <h3 class="italic-serif accent-text" style="font-size: 3.5rem; margin-bottom: 20px;">Instant Booking</h3>
+                        <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">Secure your appointment instantly through our official booking partner. Walk-ins are accepted based on availability.</p>
+                        <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="primary-btn hover-target" style="padding: 20px 50px; font-size: 1rem;">
+                            <span class="btn-text">Continue to Booksy <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
+                            <span class="btn-bg"></span>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="amenities-wrapper gs-reveal">
-                    <h3 class="amenities-title">Amenities</h3>
-                    <div class="amenities-grid">
-                        <div class="amenity-item"><i class="fa-solid fa-car"></i> Parking space</div>
-                        <div class="amenity-item"><i class="fa-solid fa-wifi"></i> Wi-Fi</div>
-                        <div class="amenity-item"><i class="fa-regular fa-credit-card"></i> Credit cards accepted</div>
-                        <div class="amenity-item"><i class="fa-solid fa-wheelchair"></i> Accessible for people with disabilities</div>
-                        <div class="amenity-item"><i class="fa-solid fa-paw"></i> Pets allowed</div>
-                        <div class="amenity-item"><i class="fa-solid fa-child"></i> Child-friendly</div>
-                    </div>
+                <div class="huge-footer-text-container gs-reveal-up">
+                    <div class="huge-footer-text">CROWNZ</div>
                 </div>
 
-            </div>
-        </section>
+                <div class="footer-bottom container" style="border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;">
+                    <p class="copyright" style="font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 2px;">© 2026 Crownz Barber Shop. Crafted for Excellence.</p>
+                    <div class="f-socials">
+                        <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="hover-target" style="font-size: 1.8rem; color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </footer>
 
-        <section id="portfolio" class="portfolio-section">
-            <div class="container" data-lenis-prevent>
-                <div class="portfolio-header gs-reveal">
-                    <div>
-                        <h2 class="section-title" style="margin: 0;">The<br><span>Portfolio</span></h2>
-                        <div class="section-line" style="margin-bottom: 0;"></div>
-                    </div>
-                    <div class="magnetic-wrap">
-                        <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="btn-parallax hover-btn"><span class="btn-bg"></span><span class="btn-text"><i class="fa-brands fa-instagram"></i> @crownzbarbershop</span></a>
-                    </div>
-                </div>
-
-                <div class="portfolio-gallery gs-reveal delay-1">
-                    <div class="p-item colorize-on-scroll hover-trigger">
-                        <img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy" decoding="async">
-                        <div class="p-title">Precision Fade</div>
-                    </div>
-                    <div class="p-item colorize-on-scroll hover-trigger">
-                        <img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy" decoding="async">
-                        <div class="p-title">Hot Towel Shave</div>
-                    </div>
-                    <div class="p-item colorize-on-scroll hover-trigger">
-                        <img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy" decoding="async">
-                        <div class="p-title">Master Tools</div>
-                    </div>
-                    <div class="p-item colorize-on-scroll hover-trigger">
-                        <img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy" decoding="async">
-                        <div class="p-title">Lineup Detail</div>
-                    </div>
-                    <div class="p-item colorize-on-scroll hover-trigger">
-                        <img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy" decoding="async">
-                        <div class="p-title">The Atmosphere</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reviews-section" id="reviews">
-            <div class="container" style="margin-bottom: 60px;">
-                <h2 class="section-title gs-reveal">Client<br><span>Voice</span></h2>
-                <div class="magnetic-wrap gs-reveal" style="margin-left: -20px;">
-                    <a href="https://www.google.com/search?q=crownz+barber+shop" target="_blank" class="btn-parallax hover-btn"><span class="btn-bg"></span><span class="btn-text">Read Google Reviews <i class="fa-brands fa-google"></i></span></a>
-                </div>
-            </div>
-            
-            <div class="marquee-container drag-zone" id="reviewMarquee">
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade, and the appointment was on time! I did not have to sit around waiting hours and it’s a local business I will very much continue to visit and support!!!"</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Essa Ali-Khan</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"I had an amazing experience at Crown barber shop. The staff were extremely friendly and welcoming... The barbers are true professionals who know exactly what they’re doing, and they gave me one of the best haircuts I’ve ever had. The atmosphere is comfortable, and you really feel valued."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Mohammad Yaseen</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. The staff are professional, the shop is clean, and they really pay attention to detail. My fade came out sharp and exactly how I wanted it. Great atmosphere and solid customer service — definitely coming back."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">SAMI Khan</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Mo has been great. I have finally found my barber in Milton. He is expert, understands your demands, works with you to give you the best suited hair and beard. Above all, he is not over priced at all! Amazing."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Safi Rajput AMJC</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade, and the appointment was on time! I did not have to sit around waiting hours and it’s a local business I will very much continue to visit and support!!!"</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Essa Ali-Khan</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"I had an amazing experience at Crown barber shop. The staff were extremely friendly and welcoming... The barbers are true professionals who know exactly what they’re doing, and they gave me one of the best haircuts I’ve ever had. The atmosphere is comfortable, and you really feel valued."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Mohammad Yaseen</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. The staff are professional, the shop is clean, and they really pay attention to detail. My fade came out sharp and exactly how I wanted it. Great atmosphere and solid customer service — definitely coming back."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">SAMI Khan</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <i class="fa-solid fa-quote-left r-quote-icon"></i>
-                    <p class="r-text">"Mo has been great. I have finally found my barber in Milton. He is expert, understands your demands, works with you to give you the best suited hair and beard. Above all, he is not over priced at all! Amazing."</p>
-                    <div class="r-author-wrap">
-                        <h4 class="r-author">Safi Rajput AMJC</h4>
-                        <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="location" class="location-section gs-reveal">
-            <div class="map-container colorize-on-scroll">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.482701198546!2d-79.86284242345511!3d43.53388337110595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fe6ceb7c393%3A0xce6bf4b5db4a6562!2sCrownz%20Barbershop!5e0!3m2!1sen!2sin!4v1712837330561!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="map-overlay-card">
-                    <h3>Crownz Barbershop</h3>
-                    <p>1260 Main St E, Milton, ON L9T 8M7</p>
-                    <div class="magnetic-wrap" style="margin-left: -20px; margin-top: 10px;">
-                        <a href="https://www.google.com/maps/dir//Crownz+Barbershop,+1260+Main+St+E,+Milton,+ON+L9T+8M7,+Canada/@18.7216836,76.0739995,4171m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x882b6fe6ceb7c393:0xce6bf4b5db4a6562!2m2!1d-79.8602675!2d43.5338834?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-parallax primary hover-btn">
-                            <span class="btn-bg"></span><span class="btn-text">Navigate to Destination <i class="fa-solid fa-location-arrow"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer-section" id="booking">
-            <div class="contact-grid container gs-reveal">
-                <div class="booking-pane">
-                    <h3>Instant Booking</h3>
-                    <p>Secure your appointment instantly through our official booking partner. Walk-ins are accepted based on availability.</p>
-                    <div class="magnetic-wrap" style="margin-top: 10px;">
-                        <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="btn-parallax primary hover-btn">
-                            <span class="btn-bg"></span><span class="btn-text">Continue to Booksy <i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="huge-footer-text">CROWNZ</div>
-
-            <div class="footer-bottom container">
-                <p class="copyright">© 2026 Crownz Barber Shop. Crafted for Excellence.</p>
-                <div style="display: flex; gap: 20px;">
-                    <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="link-icon hover-btn"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-            </div>
-        </footer>
-
+        </div>
     </main>
 
     <script src="assets/js/script.js" defer></script>
