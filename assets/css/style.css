@@ -347,10 +347,17 @@ nav.scrolled { padding: 20px 5%; }
     .floating-badge {
         display: flex;
         bottom: 20px; right: 20px;
-        width: 65px; height: 65px;
+        width: 90px;  /* Size thoda bada kiya taaki text clear dikhe */
+        height: 90px;
     }
-    .badge-text { display: none; } /* Hide ring text to save space on small screens */
-    .badge-icon { width: 45px; height: 45px; font-size: 1.1rem; }
+    .badge-text { 
+        display: block !important; /* Text ko wapas visible kiya */
+    } 
+    .badge-icon { 
+        width: 45px; 
+        height: 45px; 
+        font-size: 1.1rem; 
+    }
 
     /* Layout Adjustments */
     .about-visuals { aspect-ratio: 1 / 1; width: 100%; margin: 0 auto; }
