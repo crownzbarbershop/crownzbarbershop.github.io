@@ -150,7 +150,7 @@ nav.scrolled { padding: 20px 5%; }
 .nav-social-icons { display: flex; gap: 20px; align-items: center; }
 
 /* ==========================================================================
-   HERO SECTION (MOBILE OPTIMIZED)
+   HERO SECTION 
    ========================================================================== */
 .hero { 
     min-height: 100svh; 
@@ -193,7 +193,7 @@ nav.scrolled { padding: 20px 5%; }
 
 .ba-slider {
     position: relative; width: 100%; 
-    aspect-ratio: 1 / 1; /* Fixed 1:1 Aspect ratio for the stitched single frame */
+    aspect-ratio: 1 / 1; 
     background: var(--bg-core); overflow: hidden; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
     user-select: none; touch-action: pan-y;
 }
@@ -339,30 +339,35 @@ nav.scrolled { padding: 20px 5%; }
 @media (max-width: 768px) {
     .cursor-wrapper { display: none !important; }
     
-    /* Hero Adjustments - Zoom out effect by adjusting min-height and object-position */
-    .hero { min-height: 80svh; height: auto; padding-top: 130px; padding-bottom: 100px; }
-    .hero-bg img { object-position: center top; }
+    /* Hero Adjustments - PERFECT ZOOM OUT EFFECT */
+    .hero { 
+        min-height: unset; 
+        height: 60svh; 
+        padding-top: 100px; 
+        padding-bottom: 40px; 
+    }
+    .hero-bg img { 
+        object-position: center 15%; 
+    }
     .hero-info-bar { flex-direction: column; gap: 15px; align-items: flex-start; }
     
-    /* Un-Hide Mobile Floating Live Badge (Glitch Fixed) */
+    /* Mobile Floating Live Badge (Glitch 100% Fixed) */
     .floating-badge {
         display: flex !important;
         bottom: 20px; right: 20px;
         width: 85px; height: 85px;
         align-items: center;
         justify-content: center;
-        transform-origin: center center;
+        will-change: transform, opacity;
     }
     .badge-text { 
         display: block !important; 
         position: absolute;
-        inset: 0;
-        transform-origin: center center;
+        top: 0; left: 0; width: 100%; height: 100%;
+        will-change: transform;
     } 
     .badge-icon { 
-        width: 45px; 
-        height: 45px; 
-        font-size: 1.1rem; 
+        width: 40px; height: 40px; font-size: 1rem; 
         position: absolute;
         z-index: 2;
     }
