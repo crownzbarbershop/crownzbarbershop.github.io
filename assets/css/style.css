@@ -459,3 +459,59 @@ section { padding: var(--section-pad) 0; position: relative; }
 .gs-reveal-left { opacity: 0; transform: translateX(-60px); }
 .gs-reveal-right { opacity: 0; transform: translateX(60px); }
 .gs-reveal-scale { opacity: 0; transform: scale(0.9); }
+
+/* ==========================================================================
+   MOBILE OPTIMIZATION & PERFORMANCE FIXES
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Reduce overall section padding for mobile */
+    :root {
+        --section-pad: clamp(60px, 10vh, 100px);
+    }
+
+    /* 2. Hide heavy particles on mobile to stop lag */
+    #particles-js {
+        display: none !important; 
+    }
+
+    /* 3. Adjust Headings and Text for smaller screens */
+    .section-heading {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+        margin-bottom: 20px;
+    }
+    .lead-text { font-size: 1.15rem; }
+    .body-text { font-size: 0.95rem; }
+
+    /* 4. Fix Ethos Images overlap on mobile */
+    .ethos-visuals {
+        height: 450px;
+        margin-top: 40px;
+    }
+
+    /* 5. Fix Horizontal Scroll (Lookbook & Reviews) for Mobile */
+    .horizontal-scroll-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px;
+    }
+    .portfolio-track {
+        padding-right: 20px;
+    }
+    .port-card, .review-box {
+        scroll-snap-align: center;
+        width: 85vw !important; /* Fit perfectly on mobile screen */
+    }
+    .review-box {
+        padding: 30px;
+    }
+    .review-box p {
+        font-size: 1rem;
+    }
+
+    /* 6. Footer Text Fix */
+    .huge-footer-text {
+        font-size: 16vw;
+        letter-spacing: 0;
+    }
+}
