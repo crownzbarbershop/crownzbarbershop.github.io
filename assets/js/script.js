@@ -1,14 +1,17 @@
 // ==========================================================================
-// CROWNZ - LEVEL 500 MASTER SCRIPT
+// CROWNZ - LEVEL 500 MASTER SCRIPT (MOBILE OPTIMIZED & BUG-FREE)
 // ==========================================================================
 
-// 1. AMBIENT PARTICLE ENGINE (HERO SECTION)
+const isMobile = window.innerWidth < 768;
+
 // ==========================================================================
-if (document.getElementById('particles-js')) {
+// 1. AMBIENT PARTICLE ENGINE (HERO SECTION) - DISABLED ON MOBILE FOR SPEED
+// ==========================================================================
+if (document.getElementById('particles-js') && !isMobile) {
     particlesJS('particles-js', {
         "particles": {
             "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#00c2ff" }, // Electric Cyan
+            "color": { "value": "#00c2ff" }, 
             "shape": { "type": "circle" },
             "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
             "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
@@ -24,6 +27,7 @@ if (document.getElementById('particles-js')) {
     });
 }
 
+// ==========================================================================
 // 2. STUDIO-GRADE SMOOTH SCROLL (LENIS)
 // ==========================================================================
 const lenis = new Lenis({ 
@@ -37,10 +41,8 @@ lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => { lenis.raf(time * 1000) });
 gsap.ticker.lagSmoothing(0);
 
-// 3. CINEMATIC PRELOADER & HERO ANIMATION
 // ==========================================================================
-// ==========================================================================
-// 2. CLINICAL PRELOADER & HERO ANIMATION (FIXED BLUR BUG)
+// 3. CINEMATIC PRELOADER & HERO ANIMATION (ZERO BLUR BUG)
 // ==========================================================================
 const initAnimations = () => {
     const preloader = document.querySelector('.preloader');
@@ -52,9 +54,10 @@ const initAnimations = () => {
         .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
         .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
         
-        // Hero Image ka scale animation delete kar diya hai taaki browser blur na kare
+        // Notice: Scale and Blur animations have been completely removed from hero image 
+        // to prevent Google Chrome/Safari rendering blur bugs.
         
-        .to('.hero-section .gs-reveal', { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power4.out' }, "-=0.8")
+        .to('.hero-section .gs-reveal-up, .hero-section .gs-reveal', { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power4.out' }, "-=0.8")
         .call(() => {
             document.body.classList.remove('loading');
             setTimeout(() => { preloader.style.display = 'none'; }, 1000);
@@ -67,6 +70,7 @@ const initAnimations = () => {
 window.addEventListener('load', initAnimations);
 setTimeout(() => { if(document.body.classList.contains('loading')) initAnimations(); }, 3500);
 
+// ==========================================================================
 // 4. HIGH-PERFORMANCE MAGNETIC CURSOR
 // ==========================================================================
 if (window.matchMedia("(pointer: fine)").matches) {
@@ -75,7 +79,6 @@ if (window.matchMedia("(pointer: fine)").matches) {
     const cursorText = document.querySelector('.cursor-text');
     
     if (cursorDot && cursorRing) {
-        // quickTo is highly optimized for mouse tracking
         const dotX = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3.out" });
         const dotY = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3.out" });
         const ringX = gsap.quickTo(cursorRing, "x", { duration: 0.4, ease: "power3.out" });
@@ -93,13 +96,11 @@ if (window.matchMedia("(pointer: fine)").matches) {
             if(cursorText) { textX(e.clientX); textY(e.clientY); }
         });
 
-        // Hover Targets (Buttons, Links)
         document.querySelectorAll('a, button, .hover-target, .accordion-header, .port-card, .floating-book-btn').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        // Drag/Swipe Targets (Sliders, Carousels)
         document.querySelectorAll('.drag-target').forEach(el => {
             el.addEventListener('mouseenter', () => { 
                 document.body.classList.add('cursor-drag'); 
@@ -111,7 +112,6 @@ if (window.matchMedia("(pointer: fine)").matches) {
             });
         });
 
-        // Magnetic Physics for Primary Buttons
         document.querySelectorAll('.primary-btn').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
@@ -126,6 +126,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     }
 }
 
+// ==========================================================================
 // 5. BEFORE & AFTER TRANSFORMATION ENGINE
 // ==========================================================================
 const baSlider = document.getElementById('baSlider');
@@ -139,8 +140,6 @@ if (baSlider && baOver && baHandle) {
         const rect = baSlider.getBoundingClientRect();
         let percentage = ((clientX - rect.left) / rect.width) * 100;
         percentage = Math.max(0, Math.min(100, percentage));
-        
-        // Direct DOM manipulation for zero-latency dragging
         gsap.set(baOver, { clipPath: `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)` });
         gsap.set(baHandle, { left: `${percentage}%` });
     };
@@ -149,12 +148,12 @@ if (baSlider && baOver && baHandle) {
     window.addEventListener('mouseup', () => { isDragging = false; });
     window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
     
-    // Mobile Touch Support
     baSlider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, {passive: true}); 
     window.addEventListener('touchend', () => { isDragging = false; });
     window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, {passive: true});
 }
 
+// ==========================================================================
 // 6. INTERACTIVE ACCORDION (CROSSFADE ENGINE)
 // ==========================================================================
 const accordions = document.querySelectorAll('.accordion-item');
@@ -165,14 +164,10 @@ accordions.forEach(acc => {
     if (header) {
         header.addEventListener('click', () => {
             const isActive = acc.classList.contains('active');
-            
-            // Close all
             accordions.forEach(item => item.classList.remove('active'));
             
             if (!isActive) {
-                acc.classList.add('active'); // Open clicked
-                
-                // Crossfade Image Logic
+                acc.classList.add('active'); 
                 if (previewImg) {
                     const newSrc = acc.getAttribute('data-image');
                     if (newSrc && previewImg.getAttribute('src') !== newSrc) {
@@ -190,7 +185,8 @@ accordions.forEach(acc => {
     }
 });
 
-// 7. SCROLLTRIGGER: HORIZONTAL SCROLLING & REVEALS
+// ==========================================================================
+// 7. GSAP SCROLL REVEALS & PARALLAX (MOBILE OPTIMIZED)
 // ==========================================================================
 gsap.registerPlugin(ScrollTrigger);
 
@@ -206,25 +202,47 @@ if(header){
     }); 
 }
 
-// Reveal Animations (Up, Left, Right, Scale)
-gsap.utils.toArray('.gs-reveal-up').forEach(elem => { gsap.to(elem, { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
-gsap.utils.toArray('.gs-reveal-left').forEach(elem => { gsap.to(elem, { x: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
-gsap.utils.toArray('.gs-reveal-right').forEach(elem => { gsap.to(elem, { x: 0, opacity: 1, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
-gsap.utils.toArray('.gs-reveal-scale').forEach(elem => { gsap.to(elem, { scale: 1, opacity: 1, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: elem, start: "top 85%" } }); });
-
-// Deep Parallax (Floating Shapes)
-gsap.utils.toArray('[data-speed]').forEach(elem => {
-    const speed = parseFloat(elem.getAttribute('data-speed'));
-    gsap.to(elem, { 
-        y: () => (ScrollTrigger.maxScroll(window) - elem.offsetTop) * (1 - speed) * 0.1, 
-        ease: "none", 
-        scrollTrigger: { trigger: elem.parentElement, start: "top bottom", end: "bottom top", scrub: true } 
-    });
+// OPTIMIZED REVEAL: Trigger earlier and faster on mobile
+const revealElements = gsap.utils.toArray('.gs-reveal-up, .gs-reveal-left, .gs-reveal-right, .gs-reveal-scale, .gs-reveal');
+revealElements.forEach(elem => {
+    gsap.fromTo(elem, 
+        { 
+            y: isMobile ? 30 : 60, // Move less distance on mobile
+            x: 0, 
+            scale: elem.classList.contains('gs-reveal-scale') ? 0.9 : 1,
+            opacity: 0 
+        }, 
+        { 
+            y: 0, 
+            x: 0, 
+            scale: 1,
+            opacity: 1, 
+            duration: isMobile ? 0.8 : 1.2, // Faster animation on mobile
+            ease: "power4.out", 
+            scrollTrigger: { 
+                trigger: elem, 
+                start: isMobile ? "top 95%" : "top 85%" // Triggers instantly on mobile
+            } 
+        }
+    );
 });
+
+// Deep Parallax (Disabled on mobile to save GPU processing)
+if (!isMobile) {
+    gsap.utils.toArray('[data-speed]').forEach(elem => {
+        const speed = parseFloat(elem.getAttribute('data-speed'));
+        gsap.to(elem, { 
+            y: () => (ScrollTrigger.maxScroll(window) - elem.offsetTop) * (1 - speed) * 0.1, 
+            ease: "none", 
+            scrollTrigger: { trigger: elem.parentElement, start: "top bottom", end: "bottom top", scrub: true } 
+        });
+    });
+}
 
 // Horizontal Scrolljacking (Lookbook & Reviews)
 document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
     const track = wrapper.querySelector('.portfolio-track');
+    // Only hijack scroll on Desktop
     if (track && window.innerWidth > 900) {
         let scrollAmount = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
         gsap.to(track, { 
@@ -245,21 +263,20 @@ if (floatingBadge) {
     });
 }
 
+// ==========================================================================
 // 8. DYNAMIC STATUS & MOBILE MENU
 // ==========================================================================
-// Dynamic Open/Closed Status
 const updateShopStatus = () => {
     const statusDot = document.querySelector('.status-dot');
     const statusText = document.querySelector('.status-txt');
     if (!statusDot || !statusText) return;
 
-    // Convert local time to Toronto/Milton time
     const torontoTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Toronto" }));
     const day = torontoTime.getDay(); 
     const hours = torontoTime.getHours();
 
-    const openTime = (day === 0) ? 10 : 9; // 10 AM Sundays, 9 AM otherwise
-    const closeTime = 19; // 7 PM
+    const openTime = (day === 0) ? 10 : 9; 
+    const closeTime = 19; 
 
     const isOpen = (hours >= openTime && hours < closeTime);
 
@@ -275,9 +292,8 @@ const updateShopStatus = () => {
 };
 
 updateShopStatus();
-setInterval(updateShopStatus, 60000); // Check every minute
+setInterval(updateShopStatus, 60000);
 
-// Mobile Menu Toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu-overlay');
 
@@ -291,11 +307,13 @@ if (menuToggle && mobileMenu) {
         if (menuOpen) { 
             gsap.to(lines[0], { y: 4, rotation: 45, duration: 0.3 }); 
             gsap.to(lines[1], { y: -4, rotation: -45, duration: 0.3 }); 
-            document.body.style.overflow = 'hidden'; lenis.stop(); 
+            document.body.style.overflow = 'hidden'; 
+            if(!isMobile) lenis.stop(); 
         } else { 
             gsap.to(lines[0], { y: 0, rotation: 0, duration: 0.3 }); 
             gsap.to(lines[1], { y: 0, rotation: 0, duration: 0.3 }); 
-            document.body.style.overflow = ''; lenis.start(); 
+            document.body.style.overflow = ''; 
+            if(!isMobile) lenis.start(); 
         }
     };
     
