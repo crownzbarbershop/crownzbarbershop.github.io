@@ -1,12 +1,34 @@
 // ==========================================================================
-// CROWNZ - ULTRA-PREMIUM JAVASCRIPT ENGINE
-// DESIGN GOAL: High-performance, cinematic, smooth interactions.
+// CROWNZ - LEVEL 500 MASTER SCRIPT (MOBILE OPTIMIZED & BUG-FREE)
 // ==========================================================================
 
 const isMobile = window.innerWidth < 768;
 
 // ==========================================================================
-// 1. STUDIO-GRADE SMOOTH SCROLL (LENIS)
+// 1. AMBIENT PARTICLE ENGINE (HERO SECTION) - DISABLED ON MOBILE FOR SPEED
+// ==========================================================================
+if (document.getElementById('particles-js') && !isMobile) {
+    particlesJS('particles-js', {
+        "particles": {
+            "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" }, // Pure white
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+            "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.05, "width": 1 },
+            "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.4 } } }
+        },
+        "retina_detect": true
+    });
+}
+
+// ==========================================================================
+// 2. STUDIO-GRADE SMOOTH SCROLL (LENIS)
 // ==========================================================================
 const lenis = new Lenis({ 
     duration: 1.2, 
@@ -20,7 +42,7 @@ gsap.ticker.add((time) => { lenis.raf(time * 1000) });
 gsap.ticker.lagSmoothing(0);
 
 // ==========================================================================
-// 2. CINEMATIC PRELOADER & HERO ANIMATION 
+// 3. CINEMATIC PRELOADER & HERO ANIMATION 
 // ==========================================================================
 const initAnimations = () => {
     const preloader = document.querySelector('.preloader');
@@ -28,17 +50,11 @@ const initAnimations = () => {
     if (preloader) {
         const tl = gsap.timeline();
         
-        tl.to('.preloader-brand .char', { y: 0, opacity: 1, stagger: 0.08, duration: 1, ease: 'power4.out' })
-        .to('.preloader-progress', { width: '100%', duration: 1.2, ease: 'power3.inOut' }, "-=0.4")
-        .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut', delay: 0.2 })
+        tl.to('.preloader-brand .char', { y: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: 'power4.out' })
+        .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
+        .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
         
-        .to('.hero-section .gs-reveal-up, .hero-section .gs-reveal', { 
-            y: 0, 
-            opacity: 1, 
-            stagger: 0.15, 
-            duration: 1.2, 
-            ease: 'power4.out' 
-        }, "-=0.6")
+        .to('.hero-section .gs-reveal-up, .hero-section .gs-reveal', { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power4.out' }, "-=0.8")
         .call(() => {
             document.body.classList.remove('loading');
             setTimeout(() => { preloader.style.display = 'none'; }, 1000);
@@ -52,7 +68,7 @@ window.addEventListener('load', initAnimations);
 setTimeout(() => { if(document.body.classList.contains('loading')) initAnimations(); }, 3500);
 
 // ==========================================================================
-// 3. HIGH-PERFORMANCE MAGNETIC CURSOR
+// 4. HIGH-PERFORMANCE MAGNETIC CURSOR
 // ==========================================================================
 if (window.matchMedia("(pointer: fine)").matches) {
     const cursorDot = document.querySelector('.cursor-dot');
@@ -62,13 +78,13 @@ if (window.matchMedia("(pointer: fine)").matches) {
     if (cursorDot && cursorRing) {
         const dotX = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power3.out" });
         const dotY = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power3.out" });
-        const ringX = gsap.quickTo(cursorRing, "x", { duration: 0.3, ease: "power3.out" });
-        const ringY = gsap.quickTo(cursorRing, "y", { duration: 0.3, ease: "power3.out" });
+        const ringX = gsap.quickTo(cursorRing, "x", { duration: 0.4, ease: "power3.out" });
+        const ringY = gsap.quickTo(cursorRing, "y", { duration: 0.4, ease: "power3.out" });
         let textX, textY;
         
         if(cursorText) {
-            textX = gsap.quickTo(cursorText, "x", { duration: 0.3 });
-            textY = gsap.quickTo(cursorText, "y", { duration: 0.3 });
+            textX = gsap.quickTo(cursorText, "x", { duration: 0.4 });
+            textY = gsap.quickTo(cursorText, "y", { duration: 0.4 });
         }
         
         window.addEventListener('mousemove', (e) => { 
@@ -77,7 +93,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
             if(cursorText) { textX(e.clientX); textY(e.clientY); }
         });
 
-        document.querySelectorAll('a, button, .hover-target, .accordion-header, .port-card, .editorial-card, .floating-book-btn').forEach(el => {
+        document.querySelectorAll('a, button, .hover-target, .accordion-header, .port-card, .floating-book-btn').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
@@ -93,12 +109,12 @@ if (window.matchMedia("(pointer: fine)").matches) {
             });
         });
 
-        document.querySelectorAll('.primary-btn, .secondary-btn').forEach(btn => {
+        document.querySelectorAll('.primary-btn').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                gsap.to(btn, { x: x * 0.15, y: y * 0.15, duration: 0.4, ease: "power2.out" });
+                gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: "power2.out" });
             });
             btn.addEventListener('mouseleave', () => {
                 gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
@@ -108,7 +124,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
 }
 
 // ==========================================================================
-// 4. BEFORE & AFTER TRANSFORMATION ENGINE (BULLETPROOF TOUCH FIX)
+// 5. BEFORE & AFTER TRANSFORMATION ENGINE
 // ==========================================================================
 const baSlider = document.getElementById('baSlider');
 const baOver = document.querySelector('.ba-over');
@@ -120,41 +136,22 @@ if (baSlider && baOver && baHandle) {
     const updateSlider = (clientX) => {
         const rect = baSlider.getBoundingClientRect();
         let percentage = ((clientX - rect.left) / rect.width) * 100;
-        percentage = Math.max(0, Math.min(100, percentage)); // Lock between 0 and 100
-        
-        // Polygon is the most reliable cross-browser clip-path
+        percentage = Math.max(0, Math.min(100, percentage));
         gsap.set(baOver, { clipPath: `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)` });
         gsap.set(baHandle, { left: `${percentage}%` });
     };
 
-    const startDrag = (e) => { 
-        isDragging = true; 
-        updateSlider(e.clientX || e.touches[0].clientX); 
-    };
+    baSlider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
     
-    const stopDrag = () => { isDragging = false; };
-    
-    const drag = (e) => { 
-        if (isDragging) {
-            // Prevent scrolling while interacting with the slider (Fixes mobile glitch)
-            if (e.type === 'touchmove' && e.cancelable) e.preventDefault(); 
-            updateSlider(e.clientX || e.touches[0].clientX); 
-        }
-    };
-
-    // Desktop Events
-    baSlider.addEventListener('mousedown', startDrag);
-    window.addEventListener('mouseup', stopDrag);
-    window.addEventListener('mousemove', drag);
-    
-    // Mobile Touch Events
-    baSlider.addEventListener('touchstart', startDrag, {passive: true}); 
-    window.addEventListener('touchend', stopDrag);
-    window.addEventListener('touchmove', drag, {passive: false}); 
+    baSlider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, {passive: true}); 
+    window.addEventListener('touchend', () => { isDragging = false; });
+    window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, {passive: true});
 }
 
 // ==========================================================================
-// 5. INTERACTIVE ACCORDION 
+// 6. INTERACTIVE ACCORDION (CROSSFADE ENGINE)
 // ==========================================================================
 const accordions = document.querySelectorAll('.accordion-item');
 const previewImg = document.getElementById('servicePreviewImg');
@@ -172,10 +169,10 @@ accordions.forEach(acc => {
                     const newSrc = acc.getAttribute('data-image');
                     if (newSrc && previewImg.getAttribute('src') !== newSrc) {
                         gsap.to(previewImg, { 
-                            opacity: 0, scale: 1.05, duration: 0.3, ease: "power2.inOut",
+                            opacity: 0, filter: 'grayscale(100%) blur(5px)', scale: 1.1, duration: 0.3, 
                             onComplete: () => {
                                 previewImg.src = newSrc;
-                                previewImg.onload = () => gsap.to(previewImg, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" });
+                                previewImg.onload = () => gsap.to(previewImg, { opacity: 1, filter: 'grayscale(100%) blur(0px)', scale: 1, duration: 0.5 });
                             }
                         });
                     }
@@ -186,7 +183,7 @@ accordions.forEach(acc => {
 });
 
 // ==========================================================================
-// 6. GSAP SCROLL REVEALS, COLOR TRANSITIONS & PARALLAX 
+// 7. GSAP SCROLL REVEALS & PARALLAX (MOBILE OPTIMIZED & ULTRA-FAST)
 // ==========================================================================
 gsap.registerPlugin(ScrollTrigger);
 
@@ -202,14 +199,14 @@ if(header){
     }); 
 }
 
-// OPTIMIZED REVEAL
+// FIX: Ultra-Snappy Reveal Animation for Mobile! 
 const revealElements = gsap.utils.toArray('.gs-reveal-up, .gs-reveal-left, .gs-reveal-right, .gs-reveal-scale, .gs-reveal');
 revealElements.forEach(elem => {
     gsap.fromTo(elem, 
         { 
-            y: isMobile ? 20 : 40, 
+            y: isMobile ? 15 : 60, // Barely moves on mobile so it's instant
             x: 0, 
-            scale: elem.classList.contains('gs-reveal-scale') ? 0.95 : 1,
+            scale: elem.classList.contains('gs-reveal-scale') ? (isMobile ? 0.95 : 0.9) : 1,
             opacity: 0 
         }, 
         { 
@@ -217,27 +214,17 @@ revealElements.forEach(elem => {
             x: 0, 
             scale: 1,
             opacity: 1, 
-            duration: isMobile ? 0.8 : 1.2, 
-            ease: "power3.out", 
+            duration: isMobile ? 0.35 : 1.2, // 0.35s duration makes it load lightning fast!
+            ease: "power2.out", 
             scrollTrigger: { 
                 trigger: elem, 
-                start: isMobile ? "top 95%" : "top 85%" 
+                start: isMobile ? "top 100%" : "top 85%" // Instantly triggers the second it enters the screen
             } 
         }
     );
 });
 
-// COLOR REVEAL ON SCROLL
-gsap.utils.toArray('.img-wrap img, .monochrome-img img, .ba-image').forEach(img => {
-    ScrollTrigger.create({
-        trigger: img,
-        start: "top 75%", // Triggers when image is 75% down the viewport
-        onEnter: () => gsap.to(img, { filter: 'grayscale(0%) contrast(1.05) brightness(1)', duration: 1.2, ease: "power2.out" }),
-        onLeaveBack: () => gsap.to(img, { filter: 'grayscale(100%) contrast(1.1) brightness(0.9)', duration: 1.2, ease: "power2.inOut" })
-    });
-});
-
-// Deep Parallax 
+// Deep Parallax (Disabled on mobile to save GPU processing)
 if (!isMobile) {
     gsap.utils.toArray('[data-speed]').forEach(elem => {
         const speed = parseFloat(elem.getAttribute('data-speed'));
@@ -249,7 +236,7 @@ if (!isMobile) {
     });
 }
 
-// Horizontal Scrolljacking 
+// Horizontal Scrolljacking (Lookbook & Reviews)
 document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
     const track = wrapper.querySelector('.portfolio-track');
     if (track && window.innerWidth > 900) {
@@ -267,13 +254,13 @@ if (floatingBadge) {
     gsap.set(floatingBadge, { scale: 0, opacity: 0 });
     ScrollTrigger.create({ 
         trigger: "#ethos", start: "top 80%", 
-        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, pointerEvents: 'all', duration: 0.8, ease: "elastic.out(1, 0.6)" }), 
+        onEnter: () => gsap.to(floatingBadge, { scale: 1, opacity: 1, pointerEvents: 'all', duration: 0.8, ease: "elastic.out(1, 0.5)" }), 
         onLeaveBack: () => gsap.to(floatingBadge, { scale: 0, opacity: 0, pointerEvents: 'none', duration: 0.4, ease: "power3.in" }) 
     });
 }
 
 // ==========================================================================
-// 7. DYNAMIC STATUS & MOBILE MENU
+// 8. DYNAMIC STATUS & MOBILE MENU
 // ==========================================================================
 const updateShopStatus = () => {
     const statusDot = document.querySelector('.status-dot');
@@ -291,8 +278,10 @@ const updateShopStatus = () => {
 
     if (isOpen) {
         statusDot.classList.add('open');
+        statusDot.classList.remove('closed');
         statusText.innerText = 'Open Now';
     } else {
+        statusDot.classList.add('closed');
         statusDot.classList.remove('open');
         statusText.innerText = 'Currently Closed';
     }
@@ -329,7 +318,7 @@ if (menuToggle && mobileMenu) {
 }
 
 // ==========================================================================
-// 8. PREMIUM CLICK / TOUCH RIPPLE EFFECT
+// 9. PREMIUM RIPPLE EFFECT
 // ==========================================================================
 const createRipple = (x, y) => {
     const ripple = document.createElement('div');
@@ -338,18 +327,15 @@ const createRipple = (x, y) => {
     ripple.style.top = `${y}px`;
     document.body.appendChild(ripple);
     
-    // Remove element smoothly after animation completes
     setTimeout(() => {
         ripple.remove();
     }, 600);
 };
 
-// Listen for mouse clicks
 window.addEventListener('mousedown', (e) => {
     createRipple(e.clientX, e.clientY);
 });
 
-// Listen for screen taps on mobile
 window.addEventListener('touchstart', (e) => {
     if (e.touches.length > 0) {
         createRipple(e.touches[0].clientX, e.touches[0].clientY);
