@@ -11,7 +11,7 @@ if (document.getElementById('particles-js') && !isMobile) {
     particlesJS('particles-js', {
         "particles": {
             "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-            "color": { "value": "#ffffff" }, // Pure white
+            "color": { "value": "#ffffff" }, 
             "shape": { "type": "circle" },
             "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
             "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
@@ -42,7 +42,7 @@ gsap.ticker.add((time) => { lenis.raf(time * 1000) });
 gsap.ticker.lagSmoothing(0);
 
 // ==========================================================================
-// 3. CINEMATIC PRELOADER & HERO ANIMATION 
+// 3. CINEMATIC PRELOADER & HERO ANIMATION (ZERO BLUR BUG)
 // ==========================================================================
 const initAnimations = () => {
     const preloader = document.querySelector('.preloader');
@@ -183,7 +183,7 @@ accordions.forEach(acc => {
 });
 
 // ==========================================================================
-// 7. GSAP SCROLL REVEALS & PARALLAX (MOBILE OPTIMIZED & ULTRA-FAST)
+// 7. GSAP SCROLL REVEALS & PARALLAX 
 // ==========================================================================
 gsap.registerPlugin(ScrollTrigger);
 
@@ -199,14 +199,14 @@ if(header){
     }); 
 }
 
-// FIX: Ultra-Snappy Reveal Animation for Mobile! 
+// OPTIMIZED REVEAL: Trigger earlier and faster on mobile
 const revealElements = gsap.utils.toArray('.gs-reveal-up, .gs-reveal-left, .gs-reveal-right, .gs-reveal-scale, .gs-reveal');
 revealElements.forEach(elem => {
     gsap.fromTo(elem, 
         { 
-            y: isMobile ? 15 : 60, // Barely moves on mobile so it's instant
+            y: isMobile ? 30 : 60, 
             x: 0, 
-            scale: elem.classList.contains('gs-reveal-scale') ? (isMobile ? 0.95 : 0.9) : 1,
+            scale: elem.classList.contains('gs-reveal-scale') ? 0.9 : 1,
             opacity: 0 
         }, 
         { 
@@ -214,14 +214,24 @@ revealElements.forEach(elem => {
             x: 0, 
             scale: 1,
             opacity: 1, 
-            duration: isMobile ? 0.35 : 1.2, // 0.35s duration makes it load lightning fast!
-            ease: "power2.out", 
+            duration: isMobile ? 0.8 : 1.2, 
+            ease: "power4.out", 
             scrollTrigger: { 
                 trigger: elem, 
-                start: isMobile ? "top 100%" : "top 85%" // Instantly triggers the second it enters the screen
+                start: isMobile ? "top 95%" : "top 85%" 
             } 
         }
     );
+});
+
+// FASTER COLOR REVEAL ON SCROLL
+gsap.utils.toArray('.img-wrap img, .monochrome-img img, .port-card img').forEach(img => {
+    ScrollTrigger.create({
+        trigger: img,
+        start: "top 85%", // Triggers earlier
+        onEnter: () => gsap.to(img, { filter: 'grayscale(0%) brightness(1)', duration: 0.6, ease: "power2.out" }), // Faster duration
+        onLeaveBack: () => gsap.to(img, { filter: 'grayscale(100%) brightness(0.8)', duration: 0.6, ease: "power2.inOut" })
+    });
 });
 
 // Deep Parallax (Disabled on mobile to save GPU processing)
@@ -239,6 +249,7 @@ if (!isMobile) {
 // Horizontal Scrolljacking (Lookbook & Reviews)
 document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
     const track = wrapper.querySelector('.portfolio-track');
+    // Only hijack scroll on Desktop
     if (track && window.innerWidth > 900) {
         let scrollAmount = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
         gsap.to(track, { 
@@ -316,28 +327,3 @@ if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', toggleMenu);
     document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
 }
-
-// ==========================================================================
-// 9. PREMIUM RIPPLE EFFECT
-// ==========================================================================
-const createRipple = (x, y) => {
-    const ripple = document.createElement('div');
-    ripple.classList.add('premium-ripple');
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    document.body.appendChild(ripple);
-    
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-};
-
-window.addEventListener('mousedown', (e) => {
-    createRipple(e.clientX, e.clientY);
-});
-
-window.addEventListener('touchstart', (e) => {
-    if (e.touches.length > 0) {
-        createRipple(e.touches[0].clientX, e.touches[0].clientY);
-    }
-}, { passive: true });
