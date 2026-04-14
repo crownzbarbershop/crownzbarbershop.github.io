@@ -536,8 +536,8 @@ section { padding: var(--section-pad) 0; position: relative; }
     /* GIF scale fix so it covers the portrait screen nicely */
     .ambient-logo-bg img {
         opacity: 0.15; 
-        object-fit: cover !important; 
-        transform: scale(1.5); 
+        object-fit: contain !important; /* Ye GIF ko bina kate poora screen par fit karega */
+        transform: scale(1) !important; /* Ye us 1.5x wale extra zoom ko bilkul hata dega */
     }
 
     /* Mobile Hero updates */
