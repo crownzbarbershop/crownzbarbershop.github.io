@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CROWNZ - ULTRA-PREMIUM MONOCHROME STYLESHEET (STRICTLY BEBAS NEUE)
+   CROWNZ - ULTRA-PREMIUM MONOCHROME STYLESHEET (FINAL PERFECTED)
    ========================================================================== */
 
 :root {
@@ -15,9 +15,10 @@
     --border-light: rgba(255, 255, 255, 0.15);
     --border-subtle: rgba(255, 255, 255, 0.05);
     
-    /* STRICTLY BEBAS NEUE AND RALEWAY */
-    --font-heading: 'Bebas Neue', sans-serif;
-    --font-sans: 'Raleway', sans-serif;
+    /* Studio Typography perfectly matched to the physical storefront sign */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Playfair Display', serif;
     
     /* Fluid Layout Geometry */
     --container-w: 1400px;
@@ -55,24 +56,17 @@ body.loading { overflow: hidden; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* Apply Bebas Neue to all headings */
+/* Apply Montserrat to all headings for that wide, geometric premium look */
 h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-text, .hero-subtitle, .sub-heading, .nav-link, .status-txt, .port-title {
     font-family: var(--font-heading) !important;
     text-transform: uppercase;
-    font-weight: 400; 
+    font-weight: 600; /* Bold to match the illuminated sign */
     letter-spacing: 2px;
 }
 
 .container { max-width: var(--container-w); margin: 0 auto; padding: 0 5%; width: 100%; }
 
-/* STRIPPED OUT CURSIVE/ITALICS COMPLETELY. IT NOW USES BEBAS NEUE */
-.italic-serif { 
-    font-family: var(--font-heading) !important; 
-    font-style: normal !important; 
-    font-weight: 400; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-}
+.italic-serif { font-family: var(--font-serif) !important; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; }
 
 .accent-text { 
     color: var(--text-main) !important; 
@@ -120,7 +114,7 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
     .cursor-text { 
         position: fixed; top: 0; left: 0; 
         transform: translate(-50%, -50%); 
-        font-size: 14px; font-weight: 400; letter-spacing: 2px; 
+        font-size: 12px; font-weight: 700; letter-spacing: 2px; 
         color: var(--bg-base); pointer-events: none; z-index: 100000; 
         opacity: 0; transition: opacity 0.3s ease; text-transform: uppercase; 
         font-family: var(--font-heading);
@@ -151,8 +145,9 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
     justify-content: center; align-items: center; gap: 40px; 
 }
 .preloader-brand { 
-    font-size: clamp(4rem, 8vw, 7rem); letter-spacing: 15px; 
+    font-size: clamp(3rem, 6vw, 5rem); letter-spacing: 15px; 
     color: var(--text-main); overflow: hidden; font-family: var(--font-heading);
+    font-weight: 700;
 }
 .preloader-brand .char { display: inline-block; transform: translateY(110%); opacity: 0; }
 .preloader-bar { width: 250px; height: 1px; background: var(--border-subtle); position: relative; overflow: hidden; }
@@ -171,14 +166,14 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
     border-bottom: 1px solid var(--border-subtle); 
     backdrop-filter: blur(10px);
 }
-.brand-logo { font-size: 2.8rem; letter-spacing: 4px; color: var(--text-main); }
+.brand-logo { font-size: 2.2rem; font-weight: 700; letter-spacing: 4px; color: var(--text-main); text-transform: uppercase !important; }
 
 .main-nav { display: none; }
 @media (min-width: 1024px) { .main-nav { display: block; } }
 
 .nav-list { display: flex; gap: 50px; }
 .nav-link { 
-    font-size: 1.1rem; letter-spacing: 3px; 
+    font-size: 0.9rem; letter-spacing: 3px; 
     position: relative; padding-bottom: 6px; 
     color: var(--text-muted); transition: color 0.4s ease; 
 }
@@ -196,7 +191,7 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
     padding: 8px 16px; border-radius: 50px; 
     border: 1px solid var(--border-light); 
 }
-.status-txt { font-size: 0.9rem; letter-spacing: 2px; margin-top: 2px; }
+.status-txt { font-size: 0.75rem; letter-spacing: 2px; font-weight: 600; margin-top: 1px; }
 .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
 .status-dot.open { background: var(--text-main); box-shadow: 0 0 10px var(--text-main); }
 
@@ -211,7 +206,7 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
 .mobile-nav-list { text-align: center; display: flex; flex-direction: column; gap: 40px; }
 .mobile-nav-link { 
     font-size: clamp(3.5rem, 12vw, 5rem); color: var(--text-muted); 
-    transition: all 0.4s ease; font-family: var(--font-heading);
+    transition: all 0.4s ease; font-family: var(--font-heading); font-weight: 600;
 }
 .mobile-nav-link:hover { color: var(--text-main); transform: translateX(10px); }
 
@@ -225,7 +220,7 @@ h1, h2, h3, h4, h5, h6, .brand-logo, .marquee-text, .primary-btn, .huge-footer-t
 .primary-btn {
     display: inline-flex; padding: 18px 40px; border: 1px solid rgba(255,255,255,0.3);
     color: var(--text-main); letter-spacing: 3px;
-    font-size: 1.1rem; position: relative; overflow: hidden;
+    font-size: 0.9rem; font-weight: 600; position: relative; overflow: hidden;
     align-items: center; gap: 15px; cursor: pointer; transition: all 0.4s ease;
     background: transparent; border-radius: 4px;
 }
@@ -344,37 +339,26 @@ section {
 }
 
 .hero-subtitle { 
-    font-size: 1.2rem; letter-spacing: 6px; 
+    font-size: 0.95rem; letter-spacing: 6px; 
     color: var(--text-main); margin-bottom: 20px; 
     display: flex; align-items: center; gap: 20px; 
 }
 .hero-subtitle::before { content: ''; width: 40px; height: 2px; background: var(--text-main); display: block; }
 
-/* BEBAS NEUE SPECIFIC TITLE SIZING */
 .hero-title { 
-    font-size: clamp(5rem, 11vw, 9rem); /* Bebas needs to be massive */
-    line-height: 0.95; 
+    font-size: clamp(3.5rem, 8vw, 6.5rem); 
+    line-height: 1.05; 
     margin-bottom: 25px; 
-    letter-spacing: 2px; 
+    letter-spacing: 0px; 
     color: var(--text-main); 
+    font-weight: 700;
 }
 .title-line { overflow: hidden; }
 .title-line span { display: inline-block; }
 
 .tagline-wrapper { margin-bottom: 25px; }
-.main-tagline { font-size: clamp(2rem, 4vw, 3.5rem); color: var(--text-main); letter-spacing: 2px; line-height: 1.3; font-family: var(--font-heading); }
-.hero-desc { font-size: clamp(1.05rem, 1.2vw, 1.15rem); line-height: 1.8; color: var(--text-main); margin-bottom: 40px; font-family: var(--font-sans); text-transform: none; }
-
-/* MOBILE FIX FOR HERO SECTION */
-@media (max-width: 768px) {
-    .hero-section { min-height: 100svh; height: auto; padding: 120px 0 60px 0; }
-    .hero-container-smart { margin-top: 90px; } 
-    .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%); }
-    .hero-text-box { padding: 0 0 0 20px; border-left: 3px solid var(--text-main) !important; background: transparent !important; box-shadow: none !important; }
-    .hero-title { font-size: clamp(4.5rem, 16vw, 7rem); margin-bottom: 15px; line-height: 0.9; }
-    .main-tagline { font-size: 2.2rem; }
-    .hero-desc { margin-bottom: 40px; font-size: 1rem; }
-}
+.main-tagline { font-size: clamp(1.6rem, 3.2vw, 2.5rem); font-weight: 400; color: var(--text-main); letter-spacing: 1px; line-height: 1.3; font-family: var(--font-sans); text-transform: none; }
+.hero-desc { font-size: clamp(1.05rem, 1.2vw, 1.15rem); line-height: 1.8; color: var(--text-main); font-weight: 400; margin-bottom: 40px; font-family: var(--font-sans); text-transform: none; }
 
 /* ==========================================================================
    7. INFINITE SCROLL MARQUEE
@@ -389,7 +373,7 @@ section {
    8. ETHOS & TRANSFORMATION MODULE
    ========================================================================== */
 section { padding: var(--section-pad) 0; position: relative; }
-.section-heading { font-size: clamp(4.5rem, 8vw, 8rem); line-height: 0.95; margin-bottom: 40px; color: var(--text-main); }
+.section-heading { font-size: clamp(4.5rem, 8vw, 7.5rem); line-height: 1; margin-bottom: 30px; color: var(--text-main); }
 .mb-large { margin-bottom: 60px; }
 .text-center { text-align: center; }
 
@@ -398,7 +382,7 @@ section { padding: var(--section-pad) 0; position: relative; }
 .lead-text { font-size: clamp(1.4rem, 2.5vw, 2.2rem); line-height: 1.5; margin-bottom: 30px; color: var(--text-main); font-weight: 500; font-family: var(--font-sans); text-transform: none; }
 .body-text { font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.9; color: var(--text-muted); font-weight: 400; margin-bottom: 50px; font-family: var(--font-sans); text-transform: none; }
 
-.secondary-btn { font-size: 1rem; letter-spacing: 3px; border-bottom: 1px solid var(--text-main); padding-bottom: 8px; transition: color 0.3s ease, border-color 0.3s ease; }
+.secondary-btn { font-size: 1rem; letter-spacing: 3px; font-weight: 600; border-bottom: 1px solid var(--text-main); padding-bottom: 8px; transition: color 0.3s ease, border-color 0.3s ease; }
 .secondary-btn:hover { color: var(--text-silver); border-color: var(--text-silver); }
 
 .ethos-visuals { position: relative; height: 750px; width: 100%; display: flex; justify-content: flex-end; align-items: center; }
@@ -570,9 +554,21 @@ section { padding: var(--section-pad) 0; position: relative; }
         transform: scale(1) !important; 
     }
 
-    .section-heading { font-size: clamp(4.5rem, 14vw, 6.5rem); margin-bottom: 20px; line-height: 0.95;}
+    /* CRITICAL FIX FOR HERO IMAGE ON MOBILE */
+    .hero-bg-img {
+        object-position: 80% top !important; /* Pans the camera exactly to the right to keep both owners visible! */
+    }
+
+    .hero-section { min-height: 100svh; height: auto; padding: 120px 0 60px 0; }
+    .hero-container-smart { margin-top: 90px; } 
+    .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%); }
+    .hero-text-box { padding: 0 0 0 20px; border-left: 3px solid var(--text-main) !important; background: transparent !important; box-shadow: none !important; }
+    .hero-title { font-size: clamp(3rem, 11vw, 4.5rem); margin-bottom: 15px; line-height: 1.1; }
+    .hero-desc { margin-bottom: 40px; font-size: 1rem; }
+
+    .section-heading { font-size: clamp(3.8rem, 12vw, 5.5rem); margin-bottom: 20px; line-height: 0.95;}
     .lead-text { font-size: 1.15rem; }
-    .body-text { font-size: 1rem; }
+    .body-text { font-size: 1.05rem; }
 
     .ethos-visuals { height: 400px; margin-top: 40px; }
     .primary-img { width: 85%; height: 85%; top: 0; right: 0; }
@@ -592,7 +588,7 @@ section { padding: var(--section-pad) 0; position: relative; }
     .cta-panel { padding: 40px 20px; }
     .large-btn { padding: 18px 30px; width: 100%; justify-content: center; }
 
-    .huge-footer-text { font-size: 18vw; letter-spacing: 0; }
+    .huge-footer-text { font-size: 16vw; letter-spacing: 0; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
     
     .ba-wrapper { 
