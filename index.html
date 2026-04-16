@@ -23,7 +23,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -42,12 +42,22 @@
 
     <div class="preloader">
         <div class="preloader-brand">
-            <span class="char">C</span><span class="char">R</span><span class="char">O</span><span class="char">W</span><span class="char">N</span><span class="char">Z</span>
+            <div class="crownz-ui-logo" style="font-size: clamp(4rem, 8vw, 7rem);">
+                <svg class="crown-svg char" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <circle cx="50" cy="10" r="6" />
+                    <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
+                    <rect x="18" y="62" width="64" height="4" />
+                </svg>
+                <div class="logo-text-main">
+                    <span class="char">C</span><span class="char">R</span><span class="char">O</span><span class="char">W</span><span class="char">N</span><span class="char">Z</span>
+                </div>
+                <div class="logo-text-sub char">BARBERSHOP</div>
+            </div>
         </div>
         <div class="preloader-bar"><div class="preloader-progress"></div></div>
     </div>
 
-    <div class="ambient-logo-bg" aria-hidden="true">
+    <div class="ambient-logo-bg monochrome-reveal" aria-hidden="true">
         <div class="ambient-overlay"></div>
         <img src="assets/images/logo-animation.gif" alt="Crownz Ambient Logo" loading="lazy">
     </div>
@@ -63,7 +73,17 @@
     </a>
 
     <header class="site-header">
-        <a href="#" class="brand-logo hover-target">Crownz.</a>
+        <a href="#" class="brand-logo hover-target">
+            <div class="crownz-ui-logo" style="font-size: 2.8rem;">
+                <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <circle cx="50" cy="10" r="6" />
+                    <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
+                    <rect x="18" y="62" width="64" height="4" />
+                </svg>
+                <div class="logo-text-main">CROWNZ</div>
+                <div class="logo-text-sub">BARBERSHOP</div>
+            </div>
+        </a>
         
         <nav class="main-nav">
             <ul class="nav-list">
@@ -110,20 +130,21 @@
                 </div>
                 
                 <div class="container hero-container-smart" style="z-index: 5;">
-                    <div class="hero-text-box glass-panel gs-reveal-up">
+                    <div class="hero-text-box gs-reveal-up">
                         <div class="hero-subtitle">Premium Grooming Experience</div>
+                        
                         <h1 class="hero-title">
                             <div class="title-line"><span>Crafting Your</span></div>
-                            <div class="title-line"><span class="italic-serif accent-text">Signature Look.</span></div>
+                            <div class="title-line"><span class="accent-text">Signature Look.</span></div>
                         </h1>
                         
                         <div class="tagline-wrapper">
-                            <h2 class="main-tagline">"Your hair is your <span class="italic-serif">crown</span>"</h2>
+                            <h2 class="main-tagline">"Your Hair is Your <span class="accent-text" style="font-family: var(--font-heading);">Crown</span>"</h2>
                         </div>
 
                         <p class="hero-desc">Milton's premier grooming destination. We combine traditional craftsmanship with avant-garde techniques to deliver an unparalleled aesthetic and luxury service.</p>
                         
-                        <div style="margin-top: 40px;">
+                        <div class="hero-btn-group" style="margin-top: 45px;">
                             <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="primary-btn hover-target">
                                 <span class="btn-text">Book Appointment <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
                                 <span class="btn-bg"></span>
@@ -146,7 +167,7 @@
                 <div class="container">
                     <div class="ethos-grid">
                         <div class="ethos-content gs-reveal-left">
-                            <h2 class="section-heading">The<br><span class="italic-serif accent-text">Experience</span></h2>
+                            <h2 class="section-heading">The<br><span class="accent-text">Experience</span></h2>
                             <p class="lead-text">More than just a haircut, Crownz is an institution of modern luxury grooming.</p>
                             <p class="body-text">We blend traditional barbering techniques with stark, avant-garde styling. Step into a realm where high-end aesthetics meet flawless execution. Our master barbers are artisans, meticulously sculpting your personal brand with absolute precision.</p>
                             
@@ -159,10 +180,12 @@
                         </div>
                         <div class="ethos-visuals gs-reveal-right">
                             <div class="graphic-frame" data-speed="0.95"></div>
-                            <div class="img-wrap primary-img hover-zoom" data-speed="0.9">
+                            
+                            <div class="img-wrap secondary-img hover-zoom monochrome-reveal" data-speed="1.15">
                                 <img src="assets/images/master-barber.jpg" alt="Master Barber" loading="lazy">
                             </div>
-                            <div class="img-wrap secondary-img hover-zoom" data-speed="1.15">
+
+                            <div class="img-wrap primary-img hover-zoom monochrome-reveal" data-speed="0.9">
                                 <img src="assets/images/detail-fade.jpg" alt="Precision Detailing" loading="lazy">
                             </div>
                         </div>
@@ -173,11 +196,11 @@
             <section class="transformation-section">
                 <div class="container">
                     <div class="text-center gs-reveal-up">
-                        <h2 class="section-heading">The<br><span class="italic-serif accent-text">Transformation</span></h2>
+                        <h2 class="section-heading">The<br><span class="accent-text">Transformation</span></h2>
                         <p class="sub-heading">Slide to witness the precision. Drag to reveal the final masterpiece.</p>
                     </div>
                     
-                    <div class="slider-container gs-reveal-scale drag-target">
+                    <div class="slider-container gs-reveal-scale drag-target monochrome-reveal">
                         <div class="ba-wrapper" id="baSlider">
                             <div class="ba-image ba-under" style="background-image: url('assets/images/after.jpg');"></div>
                             <div class="ba-image ba-over" style="background-image: url('assets/images/before.jpg');"></div>
@@ -196,7 +219,7 @@
                 <div class="container">
                     <div class="services-layout">
                         <div class="services-list-col gs-reveal-left">
-                            <h2 class="section-heading mb-large">Grooming<br><span class="italic-serif accent-text">Menu</span></h2>
+                            <h2 class="section-heading mb-large">Grooming<br><span class="accent-text">Menu</span></h2>
                             
                             <div class="service-accordion">
                                 
@@ -270,14 +293,25 @@
                             </div>
 
                             <div class="amenities-grid gs-reveal-up" style="margin-top: 80px; padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.05);">
-                                <h3 class="italic-serif text-muted" style="margin-bottom: 25px; font-size: 1.2rem; width: 100%; letter-spacing: 2px; text-transform: uppercase;">Shop Amenities</h3>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                    <div class="amenity-item"><i class="fa-solid fa-car accent-text" style="width: 30px;"></i> Parking space</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-wifi accent-text" style="width: 30px;"></i> Wi-Fi</div>
-                                    <div class="amenity-item"><i class="fa-regular fa-credit-card accent-text" style="width: 30px;"></i> Credit cards</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-wheelchair accent-text" style="width: 30px;"></i> Accessible</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-paw accent-text" style="width: 30px;"></i> Pets allowed</div>
-                                    <div class="amenity-item"><i class="fa-solid fa-child accent-text" style="width: 30px;"></i> Child-friendly</div>
+                                
+                                <div class="shop-hours-col">
+                                    <h3 class="text-muted" style="margin-bottom: 25px; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase;">Shop Hours</h3>
+                                    <ul class="hours-list">
+                                        <li><div class="day">Sunday</div><div class="time muted-text">10:00 AM - 07:00 PM</div></li>
+                                        <li><div class="day">Mon - Sat</div><div class="time muted-text">09:00 AM - 07:00 PM</div></li>
+                                    </ul>
+                                </div>
+
+                                <div class="amenities-col" style="margin-top: 40px;">
+                                    <h3 class="text-muted" style="margin-bottom: 25px; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase;">Shop Amenities</h3>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                        <div class="amenity-item"><i class="fa-solid fa-car accent-text" style="width: 30px;"></i> Parking space</div>
+                                        <div class="amenity-item"><i class="fa-solid fa-wifi accent-text" style="width: 30px;"></i> Wi-Fi</div>
+                                        <div class="amenity-item"><i class="fa-regular fa-credit-card accent-text" style="width: 30px;"></i> Credit cards</div>
+                                        <div class="amenity-item"><i class="fa-solid fa-wheelchair accent-text" style="width: 30px;"></i> Accessible</div>
+                                        <div class="amenity-item"><i class="fa-solid fa-paw accent-text" style="width: 30px;"></i> Pets allowed</div>
+                                        <div class="amenity-item"><i class="fa-solid fa-child accent-text" style="width: 30px;"></i> Child-friendly</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -286,8 +320,8 @@
                         <div class="services-image-col gs-reveal-right">
                             <div class="sticky-image-container">
                                 <div class="graphic-backdrop"></div>
-                                <div class="sticky-image-wrapper">
-                                    <img src="assets/images/precision-fade.jpg" alt="Service Preview" id="servicePreviewImg">
+                                <div class="sticky-image-wrapper monochrome-reveal">
+                                    <img src="assets/images/service-preview.jpg" alt="Service Preview" id="servicePreviewImg">
                                 </div>
                             </div>
                         </div>
@@ -297,28 +331,28 @@
 
             <section id="portfolio" class="portfolio-section">
                 <div class="container">
-                    <h2 class="section-heading gs-reveal-up">The<br><span class="italic-serif accent-text">Lookbook</span></h2>
+                    <h2 class="section-heading gs-reveal-up">The<br><span class="accent-text">Lookbook</span></h2>
                 </div>
                 
                 <div class="horizontal-scroll-wrapper drag-target gs-reveal-up">
                     <div class="portfolio-track">
-                        <div class="port-card">
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy"></div>
                             <h3 class="port-title">Precision Fade</h3>
                         </div>
-                        <div class="port-card">
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy"></div>
                             <h3 class="port-title">Hot Towel Shave</h3>
                         </div>
-                        <div class="port-card">
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy"></div>
                             <h3 class="port-title">Master Tools</h3>
                         </div>
-                        <div class="port-card">
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy"></div>
                             <h3 class="port-title">Lineup Detail</h3>
                         </div>
-                        <div class="port-card">
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy"></div>
                             <h3 class="port-title">The Atmosphere</h3>
                         </div>
@@ -331,7 +365,7 @@
                 
                 <div class="container">
                     <div class="reviews-header gs-reveal-up" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                        <h2 class="section-heading" style="margin: 0;">Client<br><span class="italic-serif accent-text">Voices</span></h2>
+                        <h2 class="section-heading" style="margin: 0;">Client<br><span class="accent-text">Voices</span></h2>
                         <a href="https://www.google.com/search?q=crownz+barber+shop" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
                             <span class="btn-text" style="font-size: 0.75rem;">Google Reviews <i class="fa-brands fa-google" style="margin-left: 8px;"></i></span>
                             <span class="btn-bg"></span>
@@ -341,45 +375,44 @@
                     <div class="horizontal-scroll-wrapper drag-target gs-reveal-up" style="padding-top: 60px; margin-left: -5%;">
                         <div class="portfolio-track" style="gap: 30px; padding-left: 5%;">
                             
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <div class="g-header">
+                                    <div class="avatar">E</div>
+                                    <div class="g-info"><span class="r-name">Essa Ali-Khan</span><span class="r-time">a month ago</span></div>
+                                    <i class="fa-brands fa-google g-icon"></i>
+                                </div>
+                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <p>"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade, and the appointment was on time! I did not have to sit around waiting hours..."</p>
-                                <div class="reviewer"><span class="r-name">Essa Ali-Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
                             </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                            
+                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <div class="g-header">
+                                    <div class="avatar">M</div>
+                                    <div class="g-info"><span class="r-name">Mohammad Yaseen</span><span class="r-time">2 months ago</span></div>
+                                    <i class="fa-brands fa-google g-icon"></i>
+                                </div>
+                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <p>"I had an amazing experience at Crown barber shop. The staff were extremely friendly and welcoming... The barbers are true professionals who know exactly what they’re doing."</p>
-                                <div class="reviewer"><span class="r-name">Mohammad Yaseen</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
                             </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                            
+                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <div class="g-header">
+                                    <div class="avatar">S</div>
+                                    <div class="g-info"><span class="r-name">SAMI Khan</span><span class="r-time">3 weeks ago</span></div>
+                                    <i class="fa-brands fa-google g-icon"></i>
+                                </div>
+                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <p>"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. The staff are professional, the shop is clean, and they really pay attention to detail. My fade came out sharp."</p>
-                                <div class="reviewer"><span class="r-name">SAMI Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
                             </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
+                            
+                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                <div class="g-header">
+                                    <div class="avatar">S</div>
+                                    <div class="g-info"><span class="r-name">Safi Rajput AMJC</span><span class="r-time">2 months ago</span></div>
+                                    <i class="fa-brands fa-google g-icon"></i>
+                                </div>
+                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <p>"Mo has been great. I have finally found my barber in Milton. He is expert, understands your demands, works with you to give you the best suited hair and beard. Amazing."</p>
-                                <div class="reviewer"><span class="r-name">Safi Rajput AMJC</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
-                            </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
-                                <p>"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade... it’s a local business I will very much continue to visit and support!!!"</p>
-                                <div class="reviewer"><span class="r-name">Essa Ali-Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
-                            </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
-                                <p>"I had an amazing experience at Crown barber shop. The atmosphere is comfortable, and you really feel valued. They gave me one of the best haircuts I’ve ever had."</p>
-                                <div class="reviewer"><span class="r-name">Mohammad Yaseen</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
-                            </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
-                                <p>"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. Great atmosphere and solid customer service — definitely coming back."</p>
-                                <div class="reviewer"><span class="r-name">SAMI Khan</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
-                            </div>
-                            <div class="review-box glass-panel" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <i class="fa-solid fa-quote-right quote-mark"></i>
-                                <p>"Mo has been great. I have finally found my barber in Milton... Above all, he is not over priced at all! Amazing."</p>
-                                <div class="reviewer"><span class="r-name">Safi Rajput AMJC</span><span class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div>
                             </div>
 
                         </div>
@@ -387,13 +420,22 @@
                 </div>
             </section>
 
-            <section id="location" class="map-section gs-reveal-up" style="position: relative; height: 80vh; width: 100%;">
+            <section id="location" class="map-section gs-reveal-up monochrome-reveal" style="position: relative; height: 80vh; width: 100%;">
                 <div style="width: 100%; height: 100%; background: #000;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.427616631623!2d-79.8624562!3d43.5338834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fc25091c557%3A0xc35048d08c7e92fa!2s1260%20Main%20St%20E%2C%20Milton%2C%20ON%20L9T%208M7%2C%20Canada!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%; border: none;" class="map-iframe" title="Crownz Barber Shop Location"></iframe>
                 </div>
                 
-                <div class="glass-panel map-overlay-card" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); padding: 50px; max-width: 450px; z-index: 10; border-left: 4px solid var(--accent);">
-                    <h3 class="italic-serif accent-text" style="font-size: 3rem; margin-bottom: 10px;">Crownz.</h3>
+                <div class="glass-panel map-overlay-card" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); padding: 50px; max-width: 450px; z-index: 10; border-left: 4px solid var(--text-main);">
+                    <div class="crownz-ui-logo" style="font-size: 3rem; align-items: flex-start; text-align: left; margin-bottom: 20px;">
+                        <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor" style="margin-left: 30px;">
+                            <circle cx="50" cy="10" r="6" />
+                            <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
+                            <rect x="18" y="62" width="64" height="4" />
+                        </svg>
+                        <div class="logo-text-main">CROWNZ</div>
+                        <div class="logo-text-sub" style="font-size: 0.15em;">BARBERSHOP</div>
+                    </div>
+                    
                     <p style="color: #ccc; margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;">1260 Main St E<br>Milton, ON L9T 8M7</p>
                     <a href="https://www.google.com/maps/dir//1260+Main+St+E,+Milton,+ON+L9T+8M7" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
                         <span class="btn-text">Get Directions <i class="fa-solid fa-location-arrow" style="margin-left: 8px;"></i></span>
@@ -404,8 +446,8 @@
 
             <footer class="site-footer" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; background: var(--bg-base); padding-top: 150px; overflow: hidden;">
                 <div class="container gs-reveal-scale" style="margin-bottom: 80px; position: relative; z-index: 5;">
-                    <div class="glass-panel" style="padding: 80px 40px; text-align: center; max-width: 900px; margin: 0 auto; border: 1px solid rgba(0, 194, 255, 0.3); box-shadow: 0 0 80px rgba(0, 194, 255, 0.1);">
-                        <h3 class="italic-serif accent-text" style="font-size: 3.5rem; margin-bottom: 20px;">Instant Booking</h3>
+                    <div class="glass-panel" style="padding: 80px 40px; text-align: center; max-width: 900px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 80px rgba(255, 255, 255, 0.05);">
+                        <h3 class="accent-text" style="font-size: 3.5rem; margin-bottom: 20px;">Instant Booking</h3>
                         <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">Secure your appointment instantly through our official booking partner. Walk-ins are accepted based on availability.</p>
                         <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="primary-btn hover-target" style="padding: 20px 50px; font-size: 1rem;">
                             <span class="btn-text">Continue to Booksy <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></span>
@@ -415,7 +457,17 @@
                 </div>
                 
                 <div class="huge-footer-text-container gs-reveal-up">
-                    <div class="huge-footer-text">CROWNZ</div>
+                    <div class="huge-footer-text">
+                        <div class="crownz-ui-logo huge-logo">
+                            <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                <circle cx="50" cy="10" r="6" />
+                                <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
+                                <rect x="18" y="62" width="64" height="4" />
+                            </svg>
+                            <div class="logo-text-main">CROWNZ</div>
+                            <div class="logo-text-sub">BARBERSHOP</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="footer-bottom container" style="border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;">
