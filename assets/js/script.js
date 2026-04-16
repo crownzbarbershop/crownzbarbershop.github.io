@@ -42,7 +42,7 @@ gsap.ticker.add((time) => { lenis.raf(time * 1000) });
 gsap.ticker.lagSmoothing(0);
 
 // ==========================================================================
-// 3. CINEMATIC PRELOADER & HERO ANIMATION (ZERO BLUR BUG)
+// 3. CINEMATIC PRELOADER & HERO ANIMATION
 // ==========================================================================
 const initAnimations = () => {
     const preloader = document.querySelector('.preloader');
@@ -183,7 +183,7 @@ accordions.forEach(acc => {
 });
 
 // ==========================================================================
-// 7. GSAP SCROLL REVEALS & PARALLAX 
+// 7. GSAP SCROLL REVEALS, PARALLAX & COLOR FADE
 // ==========================================================================
 gsap.registerPlugin(ScrollTrigger);
 
@@ -199,7 +199,7 @@ if(header){
     }); 
 }
 
-// OPTIMIZED REVEAL: Trigger earlier and faster on mobile
+// Reveal animations
 const revealElements = gsap.utils.toArray('.gs-reveal-up, .gs-reveal-left, .gs-reveal-right, .gs-reveal-scale, .gs-reveal');
 revealElements.forEach(elem => {
     gsap.fromTo(elem, 
@@ -224,13 +224,13 @@ revealElements.forEach(elem => {
     );
 });
 
-// FASTER COLOR REVEAL ON SCROLL
-gsap.utils.toArray('.img-wrap img, .monochrome-img img, .port-card img').forEach(img => {
+// MONOCHROME TO COLOR REVEAL ON SCROLL
+gsap.utils.toArray('.monochrome-reveal').forEach(elem => {
     ScrollTrigger.create({
-        trigger: img,
-        start: "top 85%", // Triggers earlier
-        onEnter: () => gsap.to(img, { filter: 'grayscale(0%) brightness(1)', duration: 0.6, ease: "power2.out" }), // Faster duration
-        onLeaveBack: () => gsap.to(img, { filter: 'grayscale(100%) brightness(0.8)', duration: 0.6, ease: "power2.inOut" })
+        trigger: elem,
+        start: "top 80%", // Triggers slightly before it fully comes into view
+        onEnter: () => elem.classList.add('color-active'), // Fades into color
+        onLeaveBack: () => elem.classList.remove('color-active') // Returns to B&W if scrolled back up
     });
 });
 
@@ -327,3 +327,21 @@ if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', toggleMenu);
     document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
 }
+
+// ==========================================================================
+// 9. PREMIUM CLICK RIPPLE EFFECT
+// ==========================================================================
+document.addEventListener('click', function(e) {
+    // Prevent ripple from adding scrollbars horizontally
+    if (e.clientX > window.innerWidth - 30) return;
+
+    const ripple = document.createElement('div');
+    ripple.classList.add('premium-ripple');
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600); // Matches the CSS animation duration
+});
