@@ -30,16 +30,20 @@ if (document.getElementById('particles-js') && !isMobile) {
 // ==========================================================================
 // 2. STUDIO-GRADE SMOOTH SCROLL (LENIS)
 // ==========================================================================
-const lenis = new Lenis({ 
-    duration: 1.2, 
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-    smoothWheel: true,
-    smoothTouch: false 
-});
+// Only initialize Lenis on non-mobile to prevent mobile touch conflicts
+let lenis;
+if (!isMobile) {
+    lenis = new Lenis({ 
+        duration: 1.2, 
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+        smoothWheel: true,
+        smoothTouch: false 
+    });
 
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((time) => { lenis.raf(time * 1000) });
-gsap.ticker.lagSmoothing(0);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000) });
+    gsap.ticker.lagSmoothing(0);
+}
 
 // ==========================================================================
 // 3. CINEMATIC PRELOADER & HERO ANIMATION
@@ -50,8 +54,9 @@ const initAnimations = () => {
     if (preloader) {
         const tl = gsap.timeline();
         
-        tl.to('.preloader-brand .char', { y: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: 'power4.out' })
-        .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.4")
+        // Target the new logo image instead of individual characters
+        tl.to('.preloader-brand .logo-preloader', { y: 0, opacity: 1, duration: 1, ease: 'power4.out' })
+        .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.2")
         .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
         
         .to('.hero-section .gs-reveal-up, .hero-section .gs-reveal', { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: 'power4.out' }, "-=0.8")
@@ -228,9 +233,9 @@ revealElements.forEach(elem => {
 gsap.utils.toArray('.monochrome-reveal').forEach(elem => {
     ScrollTrigger.create({
         trigger: elem,
-        start: "top 80%", // Triggers slightly before it fully comes into view
-        onEnter: () => elem.classList.add('color-active'), // Fades into color
-        onLeaveBack: () => elem.classList.remove('color-active') // Returns to B&W if scrolled back up
+        start: "top 80%", 
+        onEnter: () => elem.classList.add('color-active'), 
+        onLeaveBack: () => elem.classList.remove('color-active') 
     });
 });
 
@@ -271,7 +276,7 @@ if (floatingBadge) {
 }
 
 // ==========================================================================
-// 8. DYNAMIC STATUS & MOBILE MENU
+// 8. DYNAMIC STATUS & MOBILE MENU (WITH FIXES)
 // ==========================================================================
 const updateShopStatus = () => {
     const statusDot = document.querySelector('.status-dot');
@@ -303,6 +308,7 @@ setInterval(updateShopStatus, 60000);
 
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu-overlay');
+const closeBtn = document.querySelector('.mobile-close-btn'); // ADDED: Target the new close button
 
 if (menuToggle && mobileMenu) {
     let menuOpen = false;
@@ -312,27 +318,35 @@ if (menuToggle && mobileMenu) {
         const lines = menuToggle.querySelectorAll('.line');
         
         if (menuOpen) { 
-            gsap.to(lines[0], { y: 4, rotation: 45, duration: 0.3 }); 
-            gsap.to(lines[1], { y: -4, rotation: -45, duration: 0.3 }); 
+            if(lines.length) {
+                gsap.to(lines[0], { y: 4, rotation: 45, duration: 0.3 }); 
+                gsap.to(lines[1], { y: -4, rotation: -45, duration: 0.3 }); 
+            }
             document.body.style.overflow = 'hidden'; 
-            if(!isMobile) lenis.stop(); 
+            if(!isMobile && lenis) lenis.stop(); 
         } else { 
-            gsap.to(lines[0], { y: 0, rotation: 0, duration: 0.3 }); 
-            gsap.to(lines[1], { y: 0, rotation: 0, duration: 0.3 }); 
+            if(lines.length) {
+                gsap.to(lines[0], { y: 0, rotation: 0, duration: 0.3 }); 
+                gsap.to(lines[1], { y: 0, rotation: 0, duration: 0.3 }); 
+            }
             document.body.style.overflow = ''; 
-            if(!isMobile) lenis.start(); 
+            if(!isMobile && lenis) lenis.start(); 
         }
     };
     
+    // Wire up all buttons
     menuToggle.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu); // ADDED: Close button triggers toggle
+    
+    // Close menu when a link is clicked
     document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
 }
 
 // ==========================================================================
-// 9. PREMIUM CLICK RIPPLE EFFECT
+// 9. PREMIUM CLICK RIPPLE EFFECT (FIXED OVERFLOW ISSUE)
 // ==========================================================================
 document.addEventListener('click', function(e) {
-    // Prevent ripple from adding scrollbars horizontally
+    // Prevent ripple from expanding past the screen width and causing mobile scrolling
     if (e.clientX > window.innerWidth - 30) return;
 
     const ripple = document.createElement('div');
@@ -342,6 +356,8 @@ document.addEventListener('click', function(e) {
     document.body.appendChild(ripple);
     
     setTimeout(() => {
-        ripple.remove();
+        if(ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+        }
     }, 600); // Matches the CSS animation duration
 });
