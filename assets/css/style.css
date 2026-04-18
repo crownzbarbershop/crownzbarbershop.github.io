@@ -434,9 +434,25 @@ section { background: transparent; }
 }
 
 /* ==========================================================================
-   BULLETPROOF STRUCTURAL FIX (PERFECT MOBILE SPLIT LAYOUT)
+   BULLETPROOF TABLET & MOBILE RESPONSIVE LAYOUT
    ========================================================================== */
-@media (max-width: 768px) {
+
+/* 1. Tablet Landscape Optimization (e.g., iPad Landscape) */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .hero-bg-img {
+        object-position: 60% top !important; /* Pulls the image to reveal the left client perfectly */
+    }
+    .hero-text-box {
+        max-width: 55vw; /* Prevents text from expanding and overlapping the faces */
+    }
+    .hero-overlay {
+        background: linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(5,5,5,0.85) 45%, rgba(5,5,5,0) 100%);
+    }
+    .hero-title { font-size: clamp(3.2rem, 7vw, 5rem); }
+}
+
+/* 2. Tablet Portrait & Mobile Split Layout (e.g., iPad Portrait, Phones) */
+@media (max-width: 1024px) and (orientation: portrait), (max-width: 768px) {
     /* Fix Status Button Size */
     .shop-status { padding: 5px 12px; gap: 8px; }
     .status-txt { font-size: 0.7rem; letter-spacing: 1px; margin-top: 0; }
@@ -444,7 +460,7 @@ section { background: transparent; }
     .header-actions { gap: 15px; }
     .site-header { padding: 10px 5%; }
 
-    /* Bulletproof Split Column logic mathematically prevents overlap on ANY phone size */
+    /* Bulletproof Split Column logic mathematically prevents overlap on ANY vertical screen */
     .hero-section { 
         min-height: 100svh; 
         height: auto; 
@@ -465,8 +481,8 @@ section { background: transparent; }
     }
     
     .hero-bg-img {
-        object-fit: cover !important; /* Restores the premium edge-to-edge look without black bars */
-        object-position: 65% top !important; /* Shifts focus slightly right so the right client isn't cut off */
+        object-fit: cover !important; 
+        object-position: 60% top !important; /* Shifted focus to 60% to perfectly frame both clients */
         height: 100% !important; 
         width: 100% !important;
     }
