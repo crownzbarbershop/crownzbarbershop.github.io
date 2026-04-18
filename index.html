@@ -52,12 +52,11 @@
         <img src="assets/images/logo-animation.gif" alt="Crownz Ambient Logo" loading="lazy">
     </div>
 
-    <!-- BUG FIX 2: TextLength and lengthAdjust ensures the text is perfectly rendered along the circle path avoiding overlaps -->
     <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="floating-book-btn hover-target" aria-label="Book Appointment">
         <div class="circular-text">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <path id="textPath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
-                <text><textPath href="#textPath" startOffset="0%" textLength="219" lengthAdjust="spacing">RESERVE SEAT • BOOK NOW • </textPath></text>
+                <text><textPath href="#textPath" startOffset="0%">RESERVE SEAT • BOOK NOW • RESERVE SEAT • </textPath></text>
             </svg>
         </div>
         <i class="fa-solid fa-scissors" style="transform: rotate(0deg); font-size: 1.5rem;"></i>
@@ -118,16 +117,16 @@
                 
                 <div class="container hero-container-smart" style="z-index: 5;">
                     <div class="hero-text-box gs-reveal-up">
-                        <div class="hero-subtitle">Premium Grooming Experience</div>
+                        
+                        <!-- UPDATE: Tagline moved here to save vertical space and reduce text clutter -->
+                        <div class="hero-subtitle">"Your Hair is Your Crown"</div>
                         
                         <h1 class="hero-title">
                             <div class="title-line"><span>Crafting Your</span></div>
                             <div class="title-line"><span class="accent-text">Signature Look.</span></div>
                         </h1>
                         
-                        <div class="tagline-wrapper">
-                            <h2 class="main-tagline">"Your Hair is Your <span class="accent-text" style="font-family: var(--font-heading);">Crown</span>"</h2>
-                        </div>
+                        <!-- UPDATE: Large tagline text wrapper removed completely -->
 
                         <p class="hero-desc">Milton's premier grooming destination. We combine traditional craftsmanship with avant-garde techniques to deliver an unparalleled aesthetic and luxury service.</p>
                         
@@ -143,8 +142,9 @@
 
             <div class="marquee-section gs-reveal-up">
                 <div class="marquee-inner">
-                    <span class="marquee-text">MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
-                    <span class="marquee-text">MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
+                    <!-- UPDATE: Tagline added to the Marquee -->
+                    <span class="marquee-text">"YOUR HAIR IS YOUR CROWN" <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
+                    <span class="marquee-text">"YOUR HAIR IS YOUR CROWN" <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
                 </div>
             </div>
 
@@ -411,12 +411,12 @@
                 </div>
             </section>
 
-            <section id="location" class="map-section gs-reveal-up monochrome-reveal">
+            <section id="location" class="map-section gs-reveal-up monochrome-reveal" style="position: relative; height: 80vh; width: 100%;">
                 <div style="width: 100%; height: 100%; background: #000;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.427616631623!2d-79.8624562!3d43.5338834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fc25091c557%3A0xc35048d08c7e92fa!2s1260%20Main%20St%20E%2C%20Milton%2C%20ON%20L9T%208M7%2C%20Canada!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%; border: none;" class="map-iframe" title="Crownz Barber Shop Location"></iframe>
                 </div>
                 
-                <div class="glass-panel map-overlay-card">
+                <div class="glass-panel map-overlay-card" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); padding: 50px; max-width: 450px; z-index: 10; border-left: 4px solid var(--text-main);">
                     <img src="assets/images/logo.png" alt="Crownz Barber Shop" class="brand-logo-img logo-map" style="margin-bottom: 20px;">
                     
                     <p style="color: #ccc; margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;">1260 Main St E<br>Milton, ON L9T 8M7</p>
@@ -427,9 +427,9 @@
                 </div>
             </section>
 
-            <footer class="site-footer">
-                <div class="container footer-cta-container gs-reveal-scale">
-                    <div class="glass-panel cta-panel" style="text-align: center; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 80px rgba(255, 255, 255, 0.05);">
+            <footer class="site-footer" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; background: var(--bg-base); padding-top: 150px; overflow: hidden;">
+                <div class="container gs-reveal-scale" style="margin-bottom: 80px; position: relative; z-index: 5;">
+                    <div class="glass-panel" style="padding: 80px 40px; text-align: center; max-width: 900px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 80px rgba(255, 255, 255, 0.05);">
                         <h3 class="accent-text" style="font-size: 3.5rem; margin-bottom: 20px;">Instant Booking</h3>
                         <p style="color: #ccc; font-size: 1.2rem; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">Secure your appointment instantly through our official booking partner. Walk-ins are accepted based on availability.</p>
                         <a href="https://booksy.com/en-ca/24472_crownz-barbershop_barbershop_771629_milton" target="_blank" class="primary-btn hover-target" style="padding: 20px 50px; font-size: 1rem;">
@@ -445,8 +445,8 @@
                     </div>
                 </div>
 
-                <div class="footer-bottom container">
-                    <p class="copyright">© 2026 Crownz Barber Shop. Crafted for Excellence.</p>
+                <div class="footer-bottom container" style="border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 5%; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2;">
+                    <p class="copyright" style="font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 2px;">© 2026 Crownz Barber Shop. Crafted for Excellence.</p>
                     <div class="f-socials">
                         <a href="https://www.instagram.com/crownzbarbershop/" target="_blank" class="hover-target" style="font-size: 1.8rem; color: #fff;"><i class="fa-brands fa-instagram"></i></a>
                     </div>
