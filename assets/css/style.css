@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6, .marquee-text, .primary-btn, .sub-heading, .nav-link, .s
     object-fit: contain;
 }
 
-/* FIX: Significantly increased sizing per section to make the logo prominent */
+/* Significantly increased sizing per section to make the logo prominent */
 .logo-header { height: clamp(60px, 8vw, 90px); } 
 .logo-preloader { height: clamp(120px, 15vw, 180px); }
 .logo-map { height: 90px; }
@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6, .marquee-text, .primary-btn, .sub-heading, .nav-link, .s
    ========================================================================== */
 .site-header { 
     position: fixed; top: 0; left: 0; width: 100%; 
-    padding: 15px 5%; /* FIX: Reduced padding from 30px so header isn't too broad */
+    padding: 15px 5%; 
     display: flex; justify-content: space-between; align-items: center; 
     z-index: 1000; transition: all 0.6s var(--ease-smooth); 
 }
@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6, .marquee-text, .primary-btn, .sub-heading, .nav-link, .s
 }
 .mobile-nav-link:hover { color: var(--accent); transform: translateX(10px); }
 
-/* FIX: Dedicated Mobile Close Button */
+/* Dedicated Mobile Close Button */
 .mobile-close-btn {
     position: absolute;
     top: 25px;
@@ -265,7 +265,7 @@ h1, h2, h3, h4, h5, h6, .marquee-text, .primary-btn, .sub-heading, .nav-link, .s
 .primary-btn:hover .btn-text { color: var(--bg-base); }
 
 .floating-book-btn { 
-    position: fixed; bottom: 40px; right: 40px; width: 120px; height: 120px; 
+    position: fixed; bottom: 40px; right: 40px; width: 110px; height: 110px; 
     border-radius: 50%; background: var(--bg-base); 
     border: 1px solid var(--border-light); display: flex; justify-content: center; 
     align-items: center; z-index: 990; transition: all 0.4s ease;
@@ -273,12 +273,24 @@ h1, h2, h3, h4, h5, h6, .marquee-text, .primary-btn, .sub-heading, .nav-link, .s
 .floating-book-btn:hover { background: var(--text-main); border-color: var(--text-main); }
 .circular-text { position: absolute; width: 100%; height: 100%; animation: rotateText 15s linear infinite; font-family: var(--font-heading); }
 .circular-text svg { width: 100%; height: 100%; }
-.circular-text text { font-size: 13px; font-weight: 400; letter-spacing: 4px; fill: var(--text-muted); transition: fill 0.4s ease; }
+
+/* BUG FIX 2.1: Re-introduced optimal letter-spacing and reduced font-size for perfect SVG circumference alignment */
+.circular-text text { 
+    font-size: 11.5px; 
+    font-weight: 400; 
+    letter-spacing: 3.5px;
+    fill: var(--text-muted); 
+    transition: fill 0.4s ease; 
+    text-transform: uppercase; 
+}
 .floating-book-btn:hover .circular-text text { fill: var(--bg-base); }
 .floating-book-btn i { color: var(--text-main); transition: color 0.4s ease; font-size: 1.5rem; }
 .floating-book-btn:hover i { color: var(--bg-base); }
 
-@media (max-width: 768px) { .floating-book-btn { width: 90px; height: 90px; bottom: 20px; right: 20px; } }
+@media (max-width: 768px) { 
+    .floating-book-btn { width: 80px; height: 80px; bottom: 20px; right: 20px; } 
+    .floating-book-btn i { font-size: 1.25rem; }
+}
 @keyframes rotateText { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
@@ -420,15 +432,26 @@ section { background: transparent; }
     max-width: 650px;
 }
 
+/* ==========================================================================
+   BUG FIX 1: Responsive Layout Fixes (Button size & Photo alignment) 
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* Fix Status Button Size */
+    .shop-status { padding: 5px 12px; gap: 8px; }
+    .status-txt { font-size: 0.7rem; letter-spacing: 1px; margin-top: 0; }
+    .status-dot { width: 5px; height: 5px; }
+    .header-actions { gap: 15px; }
+    .site-header { padding: 10px 5%; }
+
+    /* Fix Overlapping Photo Placement */
     .hero-section { min-height: 100svh; height: auto; padding-bottom: 40px; align-items: flex-end; }
     
     .hero-image-wrapper { background: var(--bg-base); }
     
     .hero-bg-img {
         object-fit: contain !important; 
-        object-position: top center !important; 
-        height: 60vh !important; 
+        object-position: center 90px !important; /* Perfect Drop: pushes faces cleanly below header */
+        height: 65vh !important; 
     }
     
     .hero-overlay { 
@@ -437,7 +460,7 @@ section { background: transparent; }
     
     .hero-container-smart { padding-bottom: 20px; align-items: flex-end; padding-left: 20px; }
     .hero-text-box { padding: 0 10px; max-width: 100%; }
-    /* FIX: Tightened mobile font sizes to stop screen edge overlapping */
+    
     .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); margin-bottom: 15px; line-height: 1; }
     .main-tagline { font-size: 1.4rem; }
     .hero-desc { margin-bottom: 30px; font-size: 1rem; padding-right: 15px; }
@@ -446,7 +469,6 @@ section { background: transparent; }
 /* ==========================================================================
    8. INFINITE SCROLL MARQUEE
    ========================================================================== */
-/* FIX: max-width 100% to stop it pushing the page wider than the phone screen */
 .marquee-section { padding: 15px 0; background: var(--text-main); color: var(--bg-base); position: relative; z-index: 10; overflow: hidden; width: 100vw; max-width: 100%; }
 .marquee-inner { display: flex; width: 200%; animation: marquee 20s linear infinite; }
 .marquee-text { font-size: 1.4rem; letter-spacing: 5px; white-space: nowrap; padding-right: 50px; display: flex; align-items: center; margin-top: 4px; }
@@ -557,7 +579,6 @@ section { padding: var(--section-pad) 0; position: relative; }
    11. HORIZONTAL LOOKBOOK & REVIEWS
    ========================================================================== */
 .portfolio-section { overflow: hidden; padding-bottom: 150px; }
-/* FIX: Limit horizontal wrapper width to stop mobile wobble */
 .horizontal-scroll-wrapper { width: 100vw; max-width: 100%; overflow-x: auto; scrollbar-width: none; cursor: grab; padding: 20px 0; }
 .horizontal-scroll-wrapper:active { cursor: grabbing; }
 .portfolio-track { display: flex; gap: 60px; padding-right: 5%; width: max-content; }
