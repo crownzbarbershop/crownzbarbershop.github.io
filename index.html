@@ -42,17 +42,7 @@
 
     <div class="preloader">
         <div class="preloader-brand">
-            <div class="crownz-ui-logo" style="font-size: clamp(4rem, 8vw, 7rem);">
-                <svg class="crown-svg char" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                    <circle cx="50" cy="10" r="6" />
-                    <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
-                    <rect x="18" y="62" width="64" height="4" />
-                </svg>
-                <div class="logo-text-main">
-                    <span class="char">C</span><span class="char">R</span><span class="char">O</span><span class="char">W</span><span class="char">N</span><span class="char">Z</span>
-                </div>
-                <div class="logo-text-sub char">BARBERSHOP</div>
-            </div>
+            <img src="assets/images/logo.png" alt="Crownz Barber Shop" class="brand-logo-img logo-preloader">
         </div>
         <div class="preloader-bar"><div class="preloader-progress"></div></div>
     </div>
@@ -74,15 +64,7 @@
 
     <header class="site-header">
         <a href="#" class="brand-logo hover-target">
-            <div class="crownz-ui-logo" style="font-size: 2.8rem;">
-                <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                    <circle cx="50" cy="10" r="6" />
-                    <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
-                    <rect x="18" y="62" width="64" height="4" />
-                </svg>
-                <div class="logo-text-main">CROWNZ</div>
-                <div class="logo-text-sub">BARBERSHOP</div>
-            </div>
+            <img src="assets/images/logo.png" alt="Crownz Barber Shop" class="brand-logo-img logo-header">
         </a>
         
         <nav class="main-nav">
@@ -107,6 +89,10 @@
     </header>
 
     <div class="mobile-menu-overlay">
+        <button class="mobile-close-btn hover-target" aria-label="Close Menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        
         <ul class="mobile-nav-list">
             <li><a href="#ethos" class="mobile-nav-link">The Experience</a></li>
             <li><a href="#services" class="mobile-nav-link">Grooming Menu</a></li>
@@ -337,6 +323,10 @@
                 <div class="horizontal-scroll-wrapper drag-target gs-reveal-up">
                     <div class="portfolio-track">
                         <div class="port-card monochrome-reveal">
+                            <div class="img-overflow hover-zoom"><img src="assets/images/storefront.jpg" alt="Crownz Storefront" loading="lazy"></div>
+                            <h3 class="port-title">The Storefront</h3>
+                        </div>
+                        <div class="port-card monochrome-reveal">
                             <div class="img-overflow hover-zoom"><img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy"></div>
                             <h3 class="port-title">Precision Fade</h3>
                         </div>
@@ -426,15 +416,7 @@
                 </div>
                 
                 <div class="glass-panel map-overlay-card" style="position: absolute; top: 50%; left: 5%; transform: translateY(-50%); padding: 50px; max-width: 450px; z-index: 10; border-left: 4px solid var(--text-main);">
-                    <div class="crownz-ui-logo" style="font-size: 3rem; align-items: flex-start; text-align: left; margin-bottom: 20px;">
-                        <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor" style="margin-left: 30px;">
-                            <circle cx="50" cy="10" r="6" />
-                            <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
-                            <rect x="18" y="62" width="64" height="4" />
-                        </svg>
-                        <div class="logo-text-main">CROWNZ</div>
-                        <div class="logo-text-sub" style="font-size: 0.15em;">BARBERSHOP</div>
-                    </div>
+                    <img src="assets/images/logo.png" alt="Crownz Barber Shop" class="brand-logo-img logo-map" style="margin-bottom: 20px;">
                     
                     <p style="color: #ccc; margin-bottom: 40px; font-size: 1.15rem; line-height: 1.6;">1260 Main St E<br>Milton, ON L9T 8M7</p>
                     <a href="https://www.google.com/maps/dir//1260+Main+St+E,+Milton,+ON+L9T+8M7" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
@@ -457,16 +439,8 @@
                 </div>
                 
                 <div class="huge-footer-text-container gs-reveal-up">
-                    <div class="huge-footer-text">
-                        <div class="crownz-ui-logo huge-logo">
-                            <svg class="crown-svg" viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                                <circle cx="50" cy="10" r="6" />
-                                <path d="M 12 28 L 30 52 L 50 24 L 70 52 L 88 28 L 80 56 L 20 56 Z" />
-                                <rect x="18" y="62" width="64" height="4" />
-                            </svg>
-                            <div class="logo-text-main">CROWNZ</div>
-                            <div class="logo-text-sub">BARBERSHOP</div>
-                        </div>
+                    <div class="huge-footer-text" style="text-align: center;">
+                        <img src="assets/images/logo.png" alt="Crownz Barber Shop" class="brand-logo-img logo-footer" style="opacity: 0.15; transition: all 0.5s ease; max-width: 80vw;">
                     </div>
                 </div>
 
