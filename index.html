@@ -118,7 +118,6 @@
                 <div class="container hero-container-smart" style="z-index: 5;">
                     <div class="hero-text-box gs-reveal-up">
                         
-                        <!-- UPDATE: Tagline moved here to save vertical space and reduce text clutter -->
                         <div class="hero-subtitle">"Your Hair is Your Crown"</div>
                         
                         <h1 class="hero-title">
@@ -126,8 +125,6 @@
                             <div class="title-line"><span class="accent-text">Signature Look.</span></div>
                         </h1>
                         
-                        <!-- UPDATE: Large tagline text wrapper removed completely -->
-
                         <p class="hero-desc">Milton's premier grooming destination. We combine traditional craftsmanship with avant-garde techniques to deliver an unparalleled aesthetic and luxury service.</p>
                         
                         <div class="hero-btn-group" style="margin-top: 45px;">
@@ -142,7 +139,6 @@
 
             <div class="marquee-section gs-reveal-up">
                 <div class="marquee-inner">
-                    <!-- UPDATE: Tagline added to the Marquee -->
                     <span class="marquee-text">"YOUR HAIR IS YOUR CROWN" <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
                     <span class="marquee-text">"YOUR HAIR IS YOUR CROWN" <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> MASTER BARBERS <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> PRECISION FADES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> HOT TOWEL SHAVES <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> AVANT-GARDE STYLING <i class="fa-solid fa-star-of-life" style="font-size: 0.5em; margin: 0 30px;"></i> </span>
                 </div>
@@ -318,34 +314,42 @@
 
             <section id="portfolio" class="portfolio-section">
                 <div class="container">
-                    <h2 class="section-heading gs-reveal-up">The<br><span class="accent-text">Lookbook</span></h2>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;" class="gs-reveal-up">
+                        <h2 class="section-heading" style="margin: 0;">The<br><span class="accent-text">Lookbook</span></h2>
+                        <div class="carousel-nav desktop-only">
+                            <button class="carousel-btn prev-btn hover-target" aria-label="Previous"><i class="fa-solid fa-arrow-left-long"></i></button>
+                            <button class="carousel-btn next-btn hover-target" aria-label="Next"><i class="fa-solid fa-arrow-right-long"></i></button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="horizontal-scroll-wrapper drag-target gs-reveal-up">
-                    <div class="portfolio-track">
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/storefront.jpg" alt="Crownz Storefront" loading="lazy"></div>
-                            <h3 class="port-title">The Storefront</h3>
-                        </div>
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy"></div>
-                            <h3 class="port-title">Precision Fade</h3>
-                        </div>
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy"></div>
-                            <h3 class="port-title">Hot Towel Shave</h3>
-                        </div>
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy"></div>
-                            <h3 class="port-title">Master Tools</h3>
-                        </div>
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy"></div>
-                            <h3 class="port-title">Lineup Detail</h3>
-                        </div>
-                        <div class="port-card monochrome-reveal">
-                            <div class="img-overflow hover-zoom"><img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy"></div>
-                            <h3 class="port-title">The Atmosphere</h3>
+                <div class="carousel-container infinite-carousel gs-reveal-up">
+                    <div class="horizontal-scroll-wrapper drag-target">
+                        <div class="portfolio-track">
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/storefront.jpg" alt="Crownz Storefront" loading="lazy"></div>
+                                <h3 class="port-title">The Storefront</h3>
+                            </div>
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/precision-fade.jpg" alt="Precision Fade" loading="lazy"></div>
+                                <h3 class="port-title">Precision Fade</h3>
+                            </div>
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/hot-towel-shave.jpg" alt="Hot Towel Shave" loading="lazy"></div>
+                                <h3 class="port-title">Hot Towel Shave</h3>
+                            </div>
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/master-tools.jpg" alt="Master Tools" loading="lazy"></div>
+                                <h3 class="port-title">Master Tools</h3>
+                            </div>
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/lineup-detail.jpg" alt="Lineup Detail" loading="lazy"></div>
+                                <h3 class="port-title">Lineup Detail</h3>
+                            </div>
+                            <div class="port-card monochrome-reveal">
+                                <div class="img-overflow hover-zoom"><img src="assets/images/the-atmosphere.jpg" alt="The Atmosphere" loading="lazy"></div>
+                                <h3 class="port-title">The Atmosphere</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -357,53 +361,129 @@
                 <div class="container">
                     <div class="reviews-header gs-reveal-up" style="display: flex; justify-content: space-between; align-items: flex-end;">
                         <h2 class="section-heading" style="margin: 0;">Client<br><span class="accent-text">Voices</span></h2>
-                        <a href="https://www.google.com/search?q=crownz+barber+shop" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
-                            <span class="btn-text" style="font-size: 0.75rem;">Google Reviews <i class="fa-brands fa-google" style="margin-left: 8px;"></i></span>
-                            <span class="btn-bg"></span>
-                        </a>
+                        <div style="display: flex; gap: 20px; align-items: center;">
+                            <div class="carousel-nav desktop-only">
+                                <button class="carousel-btn prev-btn hover-target" aria-label="Previous"><i class="fa-solid fa-arrow-left-long"></i></button>
+                                <button class="carousel-btn next-btn hover-target" aria-label="Next"><i class="fa-solid fa-arrow-right-long"></i></button>
+                            </div>
+                            <a href="https://www.google.com/search?q=crownz+barber+shop" target="_blank" class="primary-btn hover-target" style="border-radius: 50px;">
+                                <span class="btn-text" style="font-size: 0.75rem;">Google Reviews <i class="fa-brands fa-google" style="margin-left: 8px;"></i></span>
+                                <span class="btn-bg"></span>
+                            </a>
+                        </div>
                     </div>
                     
-                    <div class="horizontal-scroll-wrapper drag-target gs-reveal-up" style="padding-top: 60px; margin-left: -5%;">
-                        <div class="portfolio-track" style="gap: 30px; padding-left: 5%;">
-                            
-                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <div class="g-header">
-                                    <div class="avatar">E</div>
-                                    <div class="g-info"><span class="r-name">Essa Ali-Khan</span><span class="r-time">a month ago</span></div>
-                                    <i class="fa-brands fa-google g-icon"></i>
+                    <div class="carousel-container infinite-carousel gs-reveal-up" style="padding-top: 60px;">
+                        <div class="horizontal-scroll-wrapper drag-target" style="margin-left: -5%;">
+                            <div class="portfolio-track" style="gap: 30px; padding-left: 5%;">
+                                
+                                <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                    <div class="g-header">
+                                        <div class="avatar" style="background: #e91e63;">P</div>
+                                        <div class="g-info"><span class="r-name">Pritpal K.</span><span class="r-time">Google Review</span></div>
+                                        <i class="fa-brands fa-google g-icon"></i>
+                                    </div>
+                                    <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"Absolute best haircut & detailed fade. Perfection without hurry. Precision and sleek look!"</p>
                                 </div>
-                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                                <p>"Mo is an expert barber, I highly recommend Crownz! He gave me a very well blended taper fade, and the appointment was on time! I did not have to sit around waiting hours..."</p>
+                                
+                                <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                    <div class="g-header">
+                                        <div class="avatar" style="background: #4caf50;">E</div>
+                                        <div class="g-info"><span class="r-name">Essa A.</span><span class="r-time">Google Review</span></div>
+                                        <i class="fa-brands fa-google g-icon"></i>
+                                    </div>
+                                    <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"The line up and beard fade were perfect. Exactly what I wanted!"</p>
+                                </div>
+                                
+                                <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                    <div class="g-header">
+                                        <div class="avatar" style="background: #ff9800;">S</div>
+                                        <div class="g-info"><span class="r-name">Shobhit S.</span><span class="r-time">Google Review</span></div>
+                                        <i class="fa-brands fa-google g-icon"></i>
+                                    </div>
+                                    <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"Mo is talented, detail oriented. Best haircut & beard trim, highly recommend!"</p>
+                                </div>
+                                
+                                <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                    <div class="g-header">
+                                        <div class="avatar" style="background: #2196f3;">S</div>
+                                        <div class="g-info"><span class="r-name">Sami K.</span><span class="r-time">Google Review</span></div>
+                                        <i class="fa-brands fa-google g-icon"></i>
+                                    </div>
+                                    <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"Moe is professional, punctual. Got exactly what I wanted!"</p>
+                                </div>
+
+                                <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
+                                    <div class="g-header">
+                                        <div class="avatar" style="background: #9c27b0;">A</div>
+                                        <div class="g-info"><span class="r-name">Alex R.</span><span class="r-time">Google Review</span></div>
+                                        <i class="fa-brands fa-google g-icon"></i>
+                                    </div>
+                                    <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"Professional precision, great attention to details. Result is always exactly as expected."</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cinematics" class="portfolio-section" style="padding-top: 80px;">
+                <div class="container">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;" class="gs-reveal-up">
+                        <div>
+                            <h2 class="section-heading" style="margin: 0;">The<br><span class="accent-text">Cinematics</span></h2>
+                            <p class="sub-heading" style="margin-top: 10px; margin-bottom: 0;">Masterclass in Motion</p>
+                        </div>
+                        <div class="carousel-nav desktop-only">
+                            <button class="carousel-btn prev-btn hover-target" aria-label="Previous"><i class="fa-solid fa-arrow-left-long"></i></button>
+                            <button class="carousel-btn next-btn hover-target" aria-label="Next"><i class="fa-solid fa-arrow-right-long"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-container infinite-carousel gs-reveal-up">
+                    <div class="horizontal-scroll-wrapper drag-target">
+                        <div class="portfolio-track video-track">
+                            
+                            <div class="video-card monochrome-reveal">
+                                <div class="video-overflow hover-zoom">
+                                    <video src="assets/Video/Video1.mp4" autoplay loop muted playsinline controls></video>
+                                </div>
+                                <h3 class="port-title">Precision Cuts</h3>
                             </div>
                             
-                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <div class="g-header">
-                                    <div class="avatar">M</div>
-                                    <div class="g-info"><span class="r-name">Mohammad Yaseen</span><span class="r-time">2 months ago</span></div>
-                                    <i class="fa-brands fa-google g-icon"></i>
+                            <div class="video-card monochrome-reveal">
+                                <div class="video-overflow hover-zoom">
+                                    <video src="assets/Video/Video2.mp4" autoplay loop muted playsinline controls></video>
                                 </div>
-                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                                <p>"I had an amazing experience at Crown barber shop. The staff were extremely friendly and welcoming... The barbers are true professionals who know exactly what they’re doing."</p>
+                                <h3 class="port-title">The Art of Fading</h3>
                             </div>
-                            
-                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <div class="g-header">
-                                    <div class="avatar">S</div>
-                                    <div class="g-info"><span class="r-name">SAMI Khan</span><span class="r-time">3 weeks ago</span></div>
-                                    <i class="fa-brands fa-google g-icon"></i>
+
+                            <div class="video-card monochrome-reveal">
+                                <div class="video-overflow hover-zoom">
+                                    <video src="assets/Video/Video3.mp4" autoplay loop muted playsinline controls></video>
                                 </div>
-                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                                <p>"Just got my haircut at Crownz Barber Shop and I'm honestly impressed. The staff are professional, the shop is clean, and they really pay attention to detail. My fade came out sharp."</p>
+                                <h3 class="port-title">Hot Towel Experience</h3>
                             </div>
-                            
-                            <div class="review-box glass-panel monochrome-reveal" style="width: 450px; white-space: normal; flex-shrink: 0;">
-                                <div class="g-header">
-                                    <div class="avatar">S</div>
-                                    <div class="g-info"><span class="r-name">Safi Rajput AMJC</span><span class="r-time">2 months ago</span></div>
-                                    <i class="fa-brands fa-google g-icon"></i>
+
+                            <div class="video-card monochrome-reveal">
+                                <div class="video-overflow hover-zoom">
+                                    <video src="assets/Video/Video4.mp4" autoplay loop muted playsinline controls></video>
                                 </div>
-                                <div class="r-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                                <p>"Mo has been great. I have finally found my barber in Milton. He is expert, understands your demands, works with you to give you the best suited hair and beard. Amazing."</p>
+                                <h3 class="port-title">Master Styling</h3>
+                            </div>
+
+                            <div class="video-card monochrome-reveal">
+                                <div class="video-overflow hover-zoom">
+                                    <video src="assets/Video/Video5.mp4" autoplay loop muted playsinline controls></video>
+                                </div>
+                                <h3 class="port-title">The Crownz Vibe</h3>
                             </div>
 
                         </div>
@@ -411,7 +491,7 @@
                 </div>
             </section>
 
-            <section id="location" class="map-section gs-reveal-up monochrome-reveal" style="position: relative; height: 80vh; width: 100%;">
+            <section id="location" class="map-section gs-reveal-up map-hover-reveal" style="position: relative; height: 80vh; width: 100%;">
                 <div style="width: 100%; height: 100%; background: #000;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2892.427616631623!2d-79.8624562!3d43.5338834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b6fc25091c557%3A0xc35048d08c7e92fa!2s1260%20Main%20St%20E%2C%20Milton%2C%20ON%20L9T%208M7%2C%20Canada!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%; border: none;" class="map-iframe" title="Crownz Barber Shop Location"></iframe>
                 </div>
