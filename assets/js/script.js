@@ -30,7 +30,6 @@ if (document.getElementById('particles-js') && !isMobile) {
 // ==========================================================================
 // 2. STUDIO-GRADE SMOOTH SCROLL (LENIS)
 // ==========================================================================
-// Only initialize Lenis on non-mobile to prevent mobile touch conflicts
 let lenis;
 if (!isMobile) {
     lenis = new Lenis({ 
@@ -54,7 +53,6 @@ const initAnimations = () => {
     if (preloader) {
         const tl = gsap.timeline();
         
-        // Target the new logo image instead of individual characters
         tl.to('.preloader-brand .logo-preloader', { y: 0, opacity: 1, duration: 1, ease: 'power4.out' })
         .to('.preloader-progress', { width: '100%', duration: 1, ease: 'power3.inOut' }, "-=0.2")
         .to('.preloader', { yPercent: -100, duration: 1, ease: 'power4.inOut' })
@@ -188,11 +186,10 @@ accordions.forEach(acc => {
 });
 
 // ==========================================================================
-// 7. GSAP SCROLL REVEALS, PARALLAX & COLOR FADE
+// 7. GSAP SCROLL REVEALS & PARALLAX
 // ==========================================================================
 gsap.registerPlugin(ScrollTrigger);
 
-// Navbar Blur on Scroll
 const header = document.querySelector('.site-header');
 if(header){ 
     ScrollTrigger.create({ 
@@ -204,7 +201,6 @@ if(header){
     }); 
 }
 
-// Reveal animations
 const revealElements = gsap.utils.toArray('.gs-reveal-up, .gs-reveal-left, .gs-reveal-right, .gs-reveal-scale, .gs-reveal');
 revealElements.forEach(elem => {
     gsap.fromTo(elem, 
@@ -229,17 +225,6 @@ revealElements.forEach(elem => {
     );
 });
 
-// MONOCHROME TO COLOR REVEAL ON SCROLL
-gsap.utils.toArray('.monochrome-reveal').forEach(elem => {
-    ScrollTrigger.create({
-        trigger: elem,
-        start: "top 80%", 
-        onEnter: () => elem.classList.add('color-active'), 
-        onLeaveBack: () => elem.classList.remove('color-active') 
-    });
-});
-
-// Deep Parallax (Disabled on mobile to save GPU processing)
 if (!isMobile) {
     gsap.utils.toArray('[data-speed]').forEach(elem => {
         const speed = parseFloat(elem.getAttribute('data-speed'));
@@ -251,20 +236,6 @@ if (!isMobile) {
     });
 }
 
-// Horizontal Scrolljacking (Lookbook & Reviews)
-document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
-    const track = wrapper.querySelector('.portfolio-track');
-    // Only hijack scroll on Desktop
-    if (track && window.innerWidth > 900) {
-        let scrollAmount = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
-        gsap.to(track, { 
-            x: -scrollAmount, ease: "none", 
-            scrollTrigger: { trigger: wrapper, start: "top center", end: () => `+=${scrollAmount}`, scrub: 1 } 
-        });
-    }
-});
-
-// Floating Book Button Reveal
 const floatingBadge = document.querySelector('.floating-book-btn');
 if (floatingBadge) {
     gsap.set(floatingBadge, { scale: 0, opacity: 0 });
@@ -276,7 +247,7 @@ if (floatingBadge) {
 }
 
 // ==========================================================================
-// 8. DYNAMIC STATUS & MOBILE MENU (WITH FIXES)
+// 8. DYNAMIC STATUS & MOBILE MENU
 // ==========================================================================
 const updateShopStatus = () => {
     const statusDot = document.querySelector('.status-dot');
@@ -308,7 +279,7 @@ setInterval(updateShopStatus, 60000);
 
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu-overlay');
-const closeBtn = document.querySelector('.mobile-close-btn'); // ADDED: Target the new close button
+const closeBtn = document.querySelector('.mobile-close-btn'); 
 
 if (menuToggle && mobileMenu) {
     let menuOpen = false;
@@ -334,19 +305,16 @@ if (menuToggle && mobileMenu) {
         }
     };
     
-    // Wire up all buttons
     menuToggle.addEventListener('click', toggleMenu);
-    if (closeBtn) closeBtn.addEventListener('click', toggleMenu); // ADDED: Close button triggers toggle
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu); 
     
-    // Close menu when a link is clicked
     document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
 }
 
 // ==========================================================================
-// 9. PREMIUM CLICK RIPPLE EFFECT (FIXED OVERFLOW ISSUE)
+// 9. PREMIUM CLICK RIPPLE EFFECT
 // ==========================================================================
 document.addEventListener('click', function(e) {
-    // Prevent ripple from expanding past the screen width and causing mobile scrolling
     if (e.clientX > window.innerWidth - 30) return;
 
     const ripple = document.createElement('div');
@@ -359,5 +327,143 @@ document.addEventListener('click', function(e) {
         if(ripple.parentNode) {
             ripple.parentNode.removeChild(ripple);
         }
-    }, 600); // Matches the CSS animation duration
+    }, 600); 
+});
+
+// ==========================================================================
+// 10. ADVANCED OBSERVER FOR HORIZONTAL SCROLL FOCUS (SPOTLIGHT EFFECT)
+// ==========================================================================
+
+// 10.A - Vertical Page Observer (Normal sections like Map, Ethos images)
+const pageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('color-active');
+        } else {
+            entry.target.classList.remove('color-active'); 
+        }
+    });
+}, { 
+    threshold: 0.3 // Item screen par 30% aaye tab color ho
+});
+
+// 10.B - Horizontal Carousel Observer (Lookbook, Reviews, Videos)
+document.querySelectorAll('.horizontal-scroll-wrapper').forEach(wrapper => {
+    const carouselObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('color-active');
+            } else {
+                // Jaise hi scroll hoke side me nikle, wapas black
+                entry.target.classList.remove('color-active'); 
+            }
+        });
+    }, { 
+        root: wrapper, // SIRF is scroll box ke andar ki movement dekhega
+        rootMargin: "0px -15%", // Side edges par 15% black rakhega, sirf middle me color karega
+        threshold: 0.3 // Item thoda saamne aana chahiye
+    });
+
+    // Har original item ko observer me daalo
+    wrapper.querySelectorAll('.monochrome-reveal').forEach(el => {
+        carouselObserver.observe(el);
+    });
+    
+    // Observer ko wrapper ke sath save kar lo taaki clones bhi observe ho sakein
+    wrapper.carouselObserver = carouselObserver;
+});
+
+// Normal page elements ko observe karo jo kisi carousel me nahi hain
+document.querySelectorAll('.monochrome-reveal').forEach(el => {
+    if (!el.closest('.horizontal-scroll-wrapper')) {
+        pageObserver.observe(el);
+    }
+});
+
+
+// ==========================================================================
+// 11. SEAMLESS INFINITE CAROUSEL ENGINE (NO JUMPS + FOCUS SPOTLIGHT)
+// ==========================================================================
+document.querySelectorAll('section').forEach(section => {
+    const carousel = section.querySelector('.infinite-carousel');
+    const wrapper = section.querySelector('.horizontal-scroll-wrapper');
+    const track = section.querySelector('.portfolio-track');
+    const prevBtn = section.querySelector('.prev-btn');
+    const nextBtn = section.querySelector('.next-btn');
+
+    if (carousel && wrapper && track) {
+        const originalItems = Array.from(track.children);
+        
+        // Clone 1
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.classList.add('carousel-clone');
+            clone.classList.remove('color-active'); 
+            track.appendChild(clone);
+            
+            // MAGIC: Clones ko bhi horizontal focus observer me daalo!
+            if (clone.classList.contains('monochrome-reveal') && wrapper.carouselObserver) {
+                wrapper.carouselObserver.observe(clone);
+            }
+        });
+        
+        // Clone 2
+        originalItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.classList.add('carousel-clone');
+            clone.classList.remove('color-active');
+            track.appendChild(clone);
+            
+            // MAGIC: Clones ko bhi horizontal focus observer me daalo!
+            if (clone.classList.contains('monochrome-reveal') && wrapper.carouselObserver) {
+                wrapper.carouselObserver.observe(clone);
+            }
+        });
+
+        const getOriginalWidth = () => {
+            if (originalItems.length === 0) return 0;
+            const itemWidth = originalItems[0].offsetWidth;
+            const style = window.getComputedStyle(track);
+            const gap = parseFloat(style.gap) || 0;
+            return (itemWidth + gap) * originalItems.length;
+        };
+
+        // Scroll listener for seamless teleporting
+        wrapper.addEventListener('scroll', () => {
+            const originalWidth = getOriginalWidth();
+            if (originalWidth === 0) return;
+            
+            const scrollLeft = wrapper.scrollLeft;
+
+            if (scrollLeft >= originalWidth * 2) {
+                wrapper.style.scrollBehavior = 'auto'; 
+                wrapper.scrollLeft = scrollLeft - originalWidth;
+            } 
+            else if (scrollLeft <= 0) {
+                wrapper.style.scrollBehavior = 'auto'; 
+                wrapper.scrollLeft = scrollLeft + originalWidth;
+            }
+        });
+
+        // Navigation Buttons Logic
+        if (prevBtn && nextBtn) {
+            const getScrollAmount = () => window.innerWidth > 1024 ? 500 : window.innerWidth * 0.8;
+
+            prevBtn.addEventListener('click', () => {
+                wrapper.style.scrollBehavior = 'smooth';
+                wrapper.scrollBy({ left: -getScrollAmount() });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                wrapper.style.scrollBehavior = 'smooth';
+                wrapper.scrollBy({ left: getScrollAmount() });
+            });
+        }
+        
+        // Set initial position perfectly in the middle
+        setTimeout(() => {
+            wrapper.style.scrollBehavior = 'auto';
+            wrapper.scrollLeft = getOriginalWidth();
+        }, 500);
+    }
 });
